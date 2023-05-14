@@ -1,0 +1,305 @@
+<?xml version='1.1'?>
+
+  <!-- This is a xacro based urdf file for ddbot which is a differential drive robot.
+  Ddbot consists of a box chasis, one caster, two wheels, and senosrs for navigation.
+  Parameters are determined in ddbot.yaml in the config folder. For physics and sensor
+  settings in gazebo, refer to ddbot.gazebo.xacro -->
+
+<robot name="ddbot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:include filename="$(find trikey_description)/urdf/ddbot.gazebo.xacro" />
+  
+  <xacro:property name="yaml_file" value="$(find trikey_description)/config/ddbot.yaml" />
+
+  <xacro:property name="props" value="${load_yaml(yaml_file)}"/>
+
+
+
+
+  <!-- L: length of the box -->
+  <xacro:property name="L" value="${props['L']}" />
+  <!-- W: width of the box -->
+  <xacro:property name="W" value="${props['W']}" />
+  <!-- D: depth of the box (or sometimes refered as height) -->
+  <xacro:property name="D" value="${props['D']}" />
+  <xacro:property name="H" value="${props['D']}" />
+  <!-- M: mass of the box -->
+  <xacro:property name="M" value="${props['M']}" />
+  <!-- R: Radius of the caster sphere -->
+  <xacro:property name="R" value="${props['R']}" />
+  <!-- m: mass of the caster -->
+  <xacro:property name="m" value="${props['m']}" />
+  <!-- WR: Wheel radius -->
+  <xacro:property name="WR" value="${props['WR']}" />
+  <!-- WL: wheel thickness -->
+  <xacro:property name="WL" value="${props['WL']}" />
+   <!-- WM: wheel mass -->
+  <xacro:property name="WM" value="${props['WM']}" />
+  <!-- ll: lidar mount parameter -->
+  <xacro:property name="ll" value="0.03" />
+  <!-- OD: Lidar Obstacle Diameter -->
+  <xacro:property name="OD" value="0.05" />
+
+
+  <!-- Dummy link -->
+  <link name="dummy_link">
+   </link>
+  <!-- Dummy Joint -->
+
+   <joint name="dummy_joint" type="fixed">
+     <parent link="dummy_link"/>
+     <child link="base_footprint"/>
+   </joint>
+
+  <!-- base_footprint link -->
+  <link name="base_footprint">
+   </link>
+
+  <!--base_footprint Joint -->
+   <joint name="base_footprint_joint" type="fixed">
+     <parent link="base_footprint"/>
+     <child link="base_link"/>
+   </joint>
+
+  <!-- Base Link -->
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+          <box size="${L} ${W} ${D}"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0.5 1 1"/>
+      </material> 
+    </visual>
+    <!-- Base collision, mass and inertia -->
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+          <box size="${L} ${W} ${D}"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="${M}"/>
+      <inertia ixx="${1/12*M*(W*W*D*D)}" ixy="0.0" ixz="0.0" iyy="${1/12*M*(L*L*D*D)}" iyz="0.0" izz="${1/12*M*(W*W*L*L)}"/>
+    </inertial>
+
+    <!-- Caster1 -->
+    <visual name="caster_1">
+      <origin xyz="${L/2*0.8} 0 -${D/2+R}" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="${R}" />
+      </geometry>
+    </visual>
+    <!-- Caster collision, mass and inertia -->
+    <collision>
+      <origin xyz="${L/2*0.8} 0 -${D/2+R}" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="${R}" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="${m}"/>
+      <inertia ixx="${2/3*m*R*R}" ixy="0.0" ixz="0.0" iyy="${2/3*m*R*R}" iyz="0.0" izz="${2/3*m*R*R}"/>
+    </inertial>
+   
+
+  </link>
+
+  <!-- Camera Joint -->
+
+  <joint name="camera_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="camera_link"/>
+    <origin xyz="${L/2 + 0.02} 0 ${1/2*D + 0.02}" rpy="0 0 0" />
+  </joint>
+
+  <!-- Camera Link -->
+  <link name="camera_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5707 0 1.5707" />
+    <geometry>
+	      <mesh filename="package://trikey_description/meshes/akdk_camera.dae" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5707 0 1.5707"/>
+      <geometry>
+        <mesh filename="package://trikey_description/meshes/akdk_camera.dae" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Camera Lense Joint -->
+   <joint name="camera_lense_joint" type="fixed">
+    <parent link="camera_link"/>
+    <child link="camera_lense_link"/>
+    <origin xyz="0 0 0" rpy="-1.5708 0 -1.5708" />
+  </joint>
+
+  <!-- Camera Lense Link -->
+  <link name="camera_lense_link">
+  </link>
+
+
+  <!-- Lidar Mount Joint-->
+
+  <joint name="lidar_mount_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="lidar_mount_link"/>
+    <origin xyz="0 0 ${3/4*D}" rpy="0 0 0" />
+  </joint>
+
+  <!-- Lidar Mount Link-->
+  <link name="lidar_mount_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="${ll} ${ll} ${D/2}"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 ${D/2}" rpy="0 0 0" />
+      <geometry>
+        <box size="${ll} ${ll} ${D/2}"/>
+      </geometry>
+    </collision>
+
+  </link>
+
+  <!-- Lidar Joint -->
+  <joint name="rplidar_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0 0 ${1/4*D}" rpy="0 0 3.14159"/>
+    <parent link="lidar_mount_link"/>
+    <child link="rplidar_link"/>
+  </joint>
+
+  <!-- Lidar Link -->
+  <link name="rplidar_link">
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5707 0 1.5707"/>
+      <geometry>
+	      <mesh filename="package://trikey_description/meshes/rplidar.dae" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5705 0 4.71229"/>
+      <geometry>
+        <mesh filename="package://trikey_description/meshes/rplidar.dae" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="1.5707 0 1.5707"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+
+    <!-- IMU Joint -->
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    <origin xyz="${L/2 + 0.01}  0 ${D/2}" rpy="0 0 0" />
+  </joint>
+
+  <!-- IMU Link -->
+  <link name="imu_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.01 0.01 0.01"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.01 0.01 0.01"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+
+   
+
+  <!-- Right Wheel -->
+  <link name="right_wheel">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.570795 0 0" />
+      <geometry>
+          <cylinder length="${WL}" radius="${WR}" />
+      </geometry>
+      <material name="darkgray">
+        <color rgba=".2 .2 .2 1"/>
+      </material>
+    </visual>
+    <!-- Right Wheel collision, mass and inertia -->
+    <collision>
+      <origin xyz="0 0 0" rpy="1.570795 0 0" />
+      <geometry>
+          <cylinder length="${WL}" radius="${WR}" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="${WM}"/>
+      <inertia ixx="${1/12*WM*(3*WR*WR+WL*WL)}" ixy="0.0" ixz="0.0" iyy="${1/12*WM*(3*WR*WR+WL*WL)}" iyz="0.0" izz="${1/12*WM*WR*WR}"/>
+    </inertial>
+
+  </link>
+
+
+
+
+  
+
+  <!-- Right Wheel joint -->
+  <joint name="joint_right_wheel" type="continuous">
+    <parent link="base_link"/>
+    <child link="right_wheel"/>
+    <origin xyz="-${L/2*0.8} -${W/2+0.05} 0" rpy="0 0 0" /> 
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <!-- Left Wheel -->
+  <link name="left_wheel">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.570795 0 0" />
+      <geometry>
+          <cylinder length="${WL}" radius="${WR}" />
+      </geometry>
+      <material name="darkgray">
+        <color rgba=".2 .2 .2 1"/>
+      </material>
+    </visual>
+    <!-- Left Wheel collision, mass and inertia -->
+    <collision>
+      <origin xyz="0 0 0" rpy="1.570795 0 0" />
+      <geometry>
+          <cylinder length="${WL}" radius="${WR}" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="${WM}"/>
+      <inertia ixx="${1/12*WM*(3*WR*WR+WL*WL)}" ixy="0.0" ixz="0.0" iyy="${1/12*WM*(3*WR*WR+WL*WL)}" iyz="0.0" izz="${1/12*WM*WR*WR}"/>
+    </inertial>
+  </link>
+
+  <!-- Left Wheel joint -->
+  <joint name="joint_left_wheel" type="continuous">
+    <parent link="base_link"/>
+    <child link="left_wheel"/>
+    <origin xyz="-${L/2*0.8} ${W/2+0.05} 0" rpy="0 0 0" /> 
+    <axis xyz="0 1 0" />
+  </joint>
+
+
+
+
+  
+
+</robot>

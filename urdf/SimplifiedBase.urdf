@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<robot name="trikey">
+
+  <link name="dummy"/>
+
+  <link name="chassis">
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.4 0.2 0.1" />
+      </geometry>
+      <material name="motors_base_material">
+        <color rgba="0.5 0.1 0.9 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.4 0.2 0.1" />
+      </geometry>
+      <material name="motors_base_material">
+        <color rgba="0.5 0.1 0.9 1.0"/>
+      </material>
+    </collision>
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <mass value="18.0" />
+      <inertia ixx="0.30" ixy="0.0"  ixz="0.0" iyy="0.3" iyz="0.0" izz="0.3" />
+    </inertial>
+  </link>
+
+  <!--  Wheels  -->
+  <link name="wheel0">
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+      <geometry>
+        <cylinder length="0.02" radius="0.1"/>
+      </geometry>
+      <material name="wheel_material">
+        <color rgba="0.9 0.4 0.3 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+      <geometry>
+        <cylinder length="0.02" radius="0.1"/>
+      </geometry>
+      <material name="wheel_material">
+      <color rgba="0.9 0.4 0.3 1.0"/>
+      </material>
+    </collision>
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+      <mass value="2.36069" />
+      <inertia ixx="0.004" ixy="0.0"  ixz="0.0" iyy="0.004" iyz="0.0" izz="0.007" />
+    </inertial>
+  </link>
+
+  <link name="wheel1">
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+      <geometry>
+        <cylinder length="0.02" radius="0.1"/>
+      </geometry>
+      <material name="wheel_material">
+        <color rgba="0.9 0.4 0.3 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+      <geometry>
+        <cylinder length="0.02" radius="0.1"/>
+      </geometry>
+      <material name="wheel_material">
+      <color rgba="0.9 0.4 0.3 1.0"/>
+      </material>
+    </collision>
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+      <mass value="2.36069" />
+      <inertia ixx="0.004" ixy="0.0"  ixz="0.0" iyy="0.004" iyz="0.0" izz="0.007" />
+    </inertial>
+  </link>
+
+  <link name="wheel2">
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+      <geometry>
+        <cylinder length="0.02" radius="0.1"/>
+      </geometry>
+      <material name="wheel_material">
+        <color rgba="0.8 0.8 0.8 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+      <geometry>
+        <cylinder length="0.02" radius="0.1"/>
+      </geometry>
+      <material name="wheel_material">
+        <color rgba="0.8 0.8 0.8 1.0"/>
+      </material>
+    </collision>
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+      <mass value="2.36069" />
+      <inertia ixx="0.004" ixy="0.0"  ixz="0.0" iyy="0.004" iyz="0.0" izz="0.007" />
+    </inertial>
+  </link>
+
+  <joint name="floating_base_joint" type="fixed">
+    <origin xyz="0 0 0.0" rpy="0 0 0"/>
+    <parent link="dummy"/>
+    <child link="chassis"/>
+  </joint>
+
+<!--  Uncomment below and change "chassis" above to base_link  -->
+<!--  <joint name="floating_base" type="fixed">-->
+<!--    <parent link="base_link"/>-->
+<!--    <child link="chassis"/>-->
+<!--  </joint>-->
+<!--  <link name="base_link">-->
+<!--    <visual>-->
+<!--      <geometry>-->
+<!--        <cylinder length="0.01" radius="0.01"/>-->
+<!--      </geometry>-->
+<!--    </visual>-->
+<!--  </link>-->
+
+  <joint name="wheel0_joint" type="continuous">
+    <origin xyz="0.15 0.1 0.025" rpy="1.57 0.0 0.0" />
+    <parent link="chassis" />
+    <child link="wheel0" />
+    <axis xyz="0 0 1"/>
+    <limit effort="1" velocity="20" />
+    <joint_properties friction="0.0"/>
+  </joint>
+
+  <joint name="wheel1_joint" type="continuous">
+    <origin xyz="0.15 -0.1 0.025" rpy="1.57 0.0 0.0" />
+    <parent link="chassis" />
+    <child link="wheel1" />
+    <axis xyz="0 0 1"/>
+    <limit effort="1" velocity="20" />
+    <joint_properties friction="0.0"/>
+  </joint>
+
+  <joint name="wheel2_joint" type="continuous">
+    <origin xyz="-0.15 0.0 0.025" rpy="1.57 0.0 0.0" />
+    <parent link="chassis" />
+    <child link="wheel2" />
+    <axis xyz="0 0 1"/>
+    <limit effort="1" velocity="20" />
+    <joint_properties friction="0.0"/>
+  </joint>
+
+  <!-- Transmissions: needed for ROS control -->
+  <transmission name="wheel0_simple_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="wheel0_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="wheel0_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
+
+  <transmission name="wheel1_simple_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="wheel1_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="wheel1_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
+
+  <transmission name="wheel2_simple_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="wheel2_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="wheel2_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
+
+  <!-- Sensors -->
+
+<!--  <gazebo reference="chassis">-->
+<!--    <sensor type="ray" name="rplidar">-->
+<!--      <pose>0 0 0 0 0 0</pose>-->
+<!--      <visualize>true</visualize>-->
+<!--      <update_rate>10</update_rate>-->
+<!--      <ray>-->
+<!--        <scan>-->
+<!--          <horizontal>-->
+<!--            <samples>720</samples>-->
+<!--            <resolution>1</resolution>-->
+<!--	    <min_angle>-1.57079632679</min_angle>-->
+<!--            <max_angle>1.57079632679 </max_angle>-->
+<!--          </horizontal>-->
+<!--        </scan>-->
+<!--        <range>-->
+<!--          <min>0.10</min>-->
+<!--          <max>12.0</max>-->
+<!--          <resolution>0.01</resolution>-->
+<!--        </range>-->
+<!--        <noise>-->
+<!--          <type>gaussian</type>-->
+<!--          &lt;!&ndash; Noise parameters based on published spec for Hokuyo laser-->
+<!--               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and-->
+<!--               stddev of 0.01m will put 99.7% of samples within 0.03m of the true-->
+<!--               reading. &ndash;&gt;-->
+<!--          <mean>0.0</mean>-->
+<!--          <stddev>0.01</stddev>-->
+<!--        </noise>-->
+<!--      </ray>-->
+<!--      <plugin name="gazebo_ros_lidar_controller" filename="libgazebo_ros_laser.so">-->
+<!--        <topicName>/scan</topicName>-->
+<!--        <frameName>chassis</frameName>-->
+<!--      </plugin>-->
+<!--    </sensor>-->
+<!--  </gazebo>-->
+
+<!--  <gazebo>-->
+<!--    <plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">-->
+<!--      <jointName>wheel0_joint, wheel1_joint, wheel2_joint</jointName>-->
+<!--    </plugin>-->
+<!--  </gazebo>-->
+
+  <!-- Pose Ground Truth -->
+  <gazebo>
+    <plugin filename="libgazebo_ros_p3d.so" name="gazebo_ros_p3d">
+      <robotNamespace>/trikey</robotNamespace>
+      <bodyName>wheel0</bodyName>
+      <topicName>ground_truth</topicName>
+      <frameName>dummy</frameName>
+      <gaussianNoise>0</gaussianNoise>
+      <alwaysOn>true</alwaysOn>
+      <updateRate>250</updateRate>
+    </plugin>
+  </gazebo>
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/trikey</robotNamespace>
+    </plugin>
+  </gazebo>
+
+</robot>

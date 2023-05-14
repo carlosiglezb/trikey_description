@@ -1,0 +1,6 @@
+{
+	"documentId": "39e6108fbbe96adc39f83659",
+	"outputFormat": "urdf",
+	"assemblyName": "base_with_rollers",
+	"useScads":true
+}
