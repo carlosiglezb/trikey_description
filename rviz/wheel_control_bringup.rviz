@@ -27,7 +27,7 @@ Panels:
     Name: Time
     SyncMode: 0
     SyncSource: ""
-  - Class: trikey_teleop/Teleop
+  - Class: bumpybot_teleop/Teleop
     Name: Teleop
     Topic: ""
 Preferences:
