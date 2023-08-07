@@ -5,8 +5,8 @@
 
 
   <!--  Import URDF  -->
-<!--  <param name="robot_description" textfile="$(find trikey_description)/urdf/urdf_generator/robot.urdf" />-->
-  <param name="robot_description" textfile="$(find trikey_description)/urdf/TrikeyBaseAssembly.urdf" />
+ <param name="robot_description" textfile="$(find trikey_description)/urdf/urdf_gazebo/robot.urdf.xacro" />
+  <!-- <param name="robot_description" textfile="$(find trikey_description)/urdf/TrikeyBaseAssembly.urdf" /> -->
 
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
 
