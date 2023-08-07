@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <robot name="trikey">
-  <link name="dummy">
-  </link>
 
   <link name="base_link">
     <visual>
@@ -218,10 +216,6 @@
 
 
   <!-- Joints -->
-  <joint name="dummy_joint" type="fixed">
-    <parent link="dummy"/>
-    <child link="base_link"/>
-  </joint>
 
   <joint name="wheel0_joint" type="continuous">
     <origin xyz="-0.103157 -0.317313 -0.144393" rpy="1.5708 0.599769 -5.54919e-17" />
