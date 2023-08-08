@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.1"?>
 
-<robot name="trikey">
+<robot name="trikey" xmlns:xacro="http://ros.org/wiki/xacro">
+
 
   <link name="base_link">
     <visual>
@@ -26,6 +27,9 @@
       <mass value="18.8276" />
       <inertia ixx="0.303414" ixy="1.35923e-09"  ixz="-1.15948e-09" iyy="0.303414" iyz="-3.03776e-09" izz="0.562153" />
     </inertial>
+  </link>
+
+  <link name= "main_body_link">
   </link>
 
   <!--  Wheels  -->
@@ -163,36 +167,6 @@
     </inertial>
   </link>
 
-  
-  <!-- Azure Kinect Camera Link (Bottom Camera) -->
-  <link name="kinect_2_link">
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <mesh filename="package://trikey_description/meshes/Azure_Kinect.stl"/>
-      </geometry>
-      <material name="kinect_material">
-        <color rgba="0.9 0.2 0.24 1.0"/>
-      </material>
-    </visual>
-
-    <collision>
-      <origin xyz="0.0 0.0 0.0"/>
-      <geometry>
-        <mesh filename="package://trikey_description/meshes/Azure_Kinect.stl"/>
-      </geometry>
-      <material name="kinect_material">
-        <color rgba="0.9 0.2 0.24 1.0"/>
-      </material>
-    </collision>
-    
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value=".44" />
-      <inertia ixx="10.173985" ixy="0.212137"  ixz="-0.09591" iyy="5.191632" iyz="0.505713" izz="5.853716" />
-    </inertial>
-  </link>
-
 
   <!-- Azure Kinect Camera Lense Link (Top Camera) -->
   <link name="kinect_1_lense_link">
@@ -204,18 +178,16 @@
     </visual>
   </link>
 
-  <!-- Azure Kinect Camera Lense Link (Bottom Camera) -->
-  <link name="kinect_2_lense_link">
-    <visual>
-      <origin xyz="0 0 0" rpy="0 1.57 0" />
-      <geometry>
-        <cylinder length="0.001" radius="0.01"/>
-      </geometry>
-    </visual>
-  </link>
+
 
 
   <!-- Joints -->
+
+  <joint name="main_body_joint" type="fixed">
+    <origin xyz="-0.1 -0.06 0" rpy="0 0 -1.57"/>
+    <parent link="base_link"/>
+    <child link="main_body_link"/>
+  </joint>
 
   <joint name="wheel0_joint" type="continuous">
     <origin xyz="-0.103157 -0.317313 -0.144393" rpy="1.5708 0.599769 -5.54919e-17" />
@@ -259,17 +231,7 @@
         <parent link="base_link"/>
         <child link="camera_base"/>
     </joint>
-<!--    <joint name="kinect_1_joint" type="fixed">-->
-<!--        <origin xyz="-0.01239 -0.289682 0.28607" rpy="0 -1.0471975511965976 1.57079632679"/>-->
-<!--        <parent link="base_link"/>-->
-<!--        <child link="camera_base"/>-->
-<!--    </joint>-->
 
-    <joint name="kinect_2_joint" type="fixed">
-        <origin xyz="0.01239 -0.289682 0.1734" rpy="0 2.0943951023931953 -1.57079632679"/>
-        <parent link="base_link"/>
-        <child link="kinect_2_link"/>
-    </joint>
 
     <joint name="kinect_1_lense_joint" type="fixed">
         <origin xyz="-0.03 0 0.01" rpy="3.14 -1.57 0"/>
@@ -277,11 +239,6 @@
         <child link="kinect_1_lense_link"/>
     </joint>
 
-    <joint name="kinect_2_lense_joint" type="fixed">
-        <origin xyz="-0.03 0 0.01" rpy="0 -1.57 0"/>
-        <parent link="kinect_2_link"/>
-        <child link="kinect_2_lense_link"/>
-    </joint>
 
   <!-- Camera Plugin for Gazebo -->
   <!-- Note on gaussian noise statistics:
@@ -327,43 +284,6 @@
       </sensor>
     </gazebo>
 
-    <!-- Kinect Camera 2 -->
-    <gazebo reference="kinect_2_lense_link">
-      <sensor type="depth" name="camera2">
-        <update_rate>15.0</update_rate>
-        <camera name="kinect2">
-          <horizontal_fov>2.0944</horizontal_fov>
-          <image>
-            <width>512</width>
-            <height>512</height>
-            <format>R8G8B8</format>
-          </image>
-          <clip>
-            <near>0.02</near>
-            <far>300</far>
-          </clip>
-          <noise>
-            <type>gaussian</type>
-            <mean>0.5</mean>
-            <stddev>0.007</stddev>
-          </noise>
-        </camera>
-          <plugin name="kinect_plugin" filename="libgazebo_ros_openni_kinect.so">
-                <baseline>0.1</baseline>
-                <alwaysOn>true</alwaysOn>
-                <updateRate>0.0</updateRate>
-                <cameraName>kinect2</cameraName>
-                <imageTopicName>/kinect2/color/image_raw</imageTopicName>
-                <cameraInfoTopicName>/kinect2/camera_info</cameraInfoTopicName>
-                <depthImageTopicName>/kinect2/depth/image_raw</depthImageTopicName>
-                <depthImageInfoTopicName>/kinect2/depth/camera_info</depthImageInfoTopicName>
-                <pointCloudTopicName>/kinect2/points</pointCloudTopicName>
-                <frameName>kinect_2_lense_link</frameName>
-                <pointCloudCutoff>0.5</pointCloudCutoff>
-                <pointCloudCutoffMax>2.0</pointCloudCutoffMax>
-            </plugin>
-      </sensor>
-    </gazebo>
 
 
   <!-- Transmissions: needed for ROS control -->
