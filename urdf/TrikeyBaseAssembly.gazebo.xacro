@@ -3,7 +3,7 @@
 
 
 <!-- Planer Controller -->
-  <!-- <gazebo>
+  <gazebo>
     <plugin name="trikey_controller" filename="libgazebo_ros_planar_move.so">
       <commandTopic>gazebo/cmd_vel</commandTopic>
       <publishTf>false</publishTf>
@@ -14,7 +14,7 @@
       <odometryRate>30.0</odometryRate>
       <robotBaseFrame>base_link</robotBaseFrame>
     </plugin>
-  </gazebo> -->
+  </gazebo>
 
   <!-- Force Based Move -->
   <!-- <gazebo>
@@ -29,7 +29,7 @@
   </gazebo> -->
 
    <!--Diff Drive Controller  -->
-  <gazebo>
+  <!-- <gazebo>
     <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
       <commandTopic>gazebo/cmd_vel</commandTopic>
       <odometryTopic>odom</odometryTopic>
@@ -42,15 +42,15 @@
       <publishWheelJointState>true</publishWheelJointState>
       <legacyMode>false</legacyMode>
       <updateRate>30</updateRate>
-      <leftJoint>wheel2_joint</leftJoint>
-      <rightJoint>wheel0_joint</rightJoint>
+      <leftJoint>wheel1_joint</leftJoint>
+      <rightJoint>wheel2_joint</rightJoint>
       <wheelSeparation>0.6</wheelSeparation>
       <wheelDiameter>0.5</wheelDiameter>
       <wheelAcceleration>50</wheelAcceleration>
       <wheelTorque>100</wheelTorque>
       <rosDebugLevel>na</rosDebugLevel>
     </plugin>
-  </gazebo>
+  </gazebo> -->
 
 
 
