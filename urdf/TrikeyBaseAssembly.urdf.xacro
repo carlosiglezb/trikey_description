@@ -37,7 +37,7 @@
 
 
   <!--  Wheels  -->
-  <link name="wheel0">
+  <link name="wheel2">
     <visual>
       <origin xyz="0.0157175 -0.000676884 -0.0110091" rpy="-1.5708 -3.56009e-33 -5.76344e-17" />
       <geometry>
@@ -63,7 +63,7 @@
     </inertial>
   </link>
 
-  <link name="wheel1">
+  <link name="wheel0">
     <visual>
       <origin xyz="0.0157175 -0.000676884 -0.0110091" rpy="-1.5708 4.8608e-17 1.36846e-47" />
       <geometry>
@@ -89,7 +89,7 @@
     </inertial>
   </link>
 
-  <link name="wheel2">
+  <link name="wheel1">
     <visual>
       <origin xyz="0.0157175 -0.000676884 -0.00283407" rpy="-1.5708 -2.51863e-17 3.13582e-17" />
       <geometry>
@@ -188,13 +188,22 @@
   <!-- Joints -->
 
   <joint name="body_joint" type="fixed">
-    <origin xyz="-0.06 0.1 0" rpy="0 0 1.57"/>
+    <origin xyz="-0.1 -0.06 0" rpy="0 0 3.14"/>
     <parent link="base_link"/>
     <child link="body_link"/>
   </joint>
 
-  <joint name="wheel0_joint" type="continuous">
+  <joint name="wheel2_joint" type="continuous">
     <origin xyz="-0.103157 -0.317313 -0.144393" rpy="1.5708 0.599769 -5.54919e-17" />
+    <parent link="body_link" />
+    <child link="wheel2" />
+    <axis xyz="0 0 1"/>
+    <limit effort="2" velocity="20" />
+    <joint_properties friction="0.0"/>
+  </joint>
+
+  <joint name="wheel0_joint" type="continuous">
+    <origin xyz="0.110261 0.0612702 -0.144393" rpy="1.5708 0.632117 2.0944" />
     <parent link="body_link" />
     <child link="wheel0" />
     <axis xyz="0 0 1"/>
@@ -203,18 +212,9 @@
   </joint>
 
   <joint name="wheel1_joint" type="continuous">
-    <origin xyz="0.110261 0.0612702 -0.144393" rpy="1.5708 0.632117 2.0944" />
-    <parent link="body_link" />
-    <child link="wheel1" />
-    <axis xyz="0 0 1"/>
-    <limit effort="2" velocity="20" />
-    <joint_properties friction="0.0"/>
-  </joint>
-
-  <joint name="wheel2_joint" type="continuous">
     <origin xyz="-0.323445 0.0653045 -0.144393" rpy="-1.5708 -1.38778e-17 1.0472" />
     <parent link="body_link" />
-    <child link="wheel2" />
+    <child link="wheel1" />
     <axis xyz="0 0 1"/>
     <limit effort="2" velocity="20" />
     <joint_properties friction="0.0"/>
