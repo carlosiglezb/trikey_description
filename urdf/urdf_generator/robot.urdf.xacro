@@ -1,12 +1,6 @@
-<robot name="trikey">
+<?xml version="1.1"?>
+<robot name="trikey" xmlns:xacro="http://ros.org/wiki/xacro">
 
-    <!-- <link name="odom"/> -->
-<!-- 
-    <joint name="floating_base_joint" type="fixed">
-        <origin xyz="0 0 0.0" rpy="0 0 0"/>
-        <parent link="odom"/>
-        <child link="base_link"/>
-    </joint> -->
 
 <link name="base_link">
 <visual>
@@ -2164,7 +2158,7 @@
     <!-- Kinect Camera Joints -->
 
     <joint name="kinect_1_joint" type="fixed">
-        <origin xyz="-0.01239 -0.289682 0.28607" rpy="0 -1.0471975511965976 1.57079632679"/>
+        <origin xyz="-0.01239 -0.289682 0.28607" rpy="0 1.57 -1.57079632679"/>
         <parent link="base_link"/>
         <child link="kinect_1_link"/>
     </joint>
@@ -2877,5 +2871,4 @@
         <minDepth>0.0001</minDepth>
         <maxVel>0</maxVel>
     </gazebo>
-
 </robot>
