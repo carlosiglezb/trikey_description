@@ -3,7 +3,7 @@
 <robot name="trikey" xmlns:xacro="http://ros.org/wiki/xacro">
 
 <!-- Include Gazebo plugins -->
-<xacro:include filename="$(find trikey_description)/urdf/urdf_gazebo/robot.gazebo.xacro" />
+<xacro:include filename="$(find trikey_description)/urdf/TrikeyBaseAssembly.gazebo.xacro" />
 
 
   <link name= "base_link">
