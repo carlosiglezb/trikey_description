@@ -7,6 +7,7 @@ Panels:
         - /Global Options1
         - /Status1
         - /Grid1
+        - /RobotModel1
         - /TF1
         - /TF1/Frames1
       Splitter Ratio: 0.5
@@ -54,7 +55,7 @@ Visualization Manager:
       Plane Cell Count: 10
       Reference Frame: <Fixed Frame>
       Value: true
-    - Alpha: 1
+    - Alpha: 0.5
       Class: rviz/RobotModel
       Collision Enabled: false
       Enabled: true
@@ -68,8 +69,12 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+        body_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
           Value: true
-        camera_base:
+        camera_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -84,10 +89,6 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        main_body_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
         wheel0:
           Alpha: 1
           Show Axes: false
@@ -115,15 +116,15 @@ Visualization Manager:
       Frames:
         All Enabled: false
         base_link:
+          Value: true
+        body_link:
           Value: false
-        camera_base:
+        camera_link:
           Value: false
         kinect_1_lense_link:
           Value: false
         lidar_link:
-          Value: true
-        main_body_link:
-          Value: true
+          Value: false
         wheel0:
           Value: true
         wheel1:
@@ -138,19 +139,18 @@ Visualization Manager:
       Show Names: true
       Tree:
         base_link:
-          camera_base:
-            kinect_1_lense_link:
+          body_link:
+            camera_link:
+              kinect_1_lense_link:
+                {}
+            lidar_link:
               {}
-          lidar_link:
-            {}
-          main_body_link:
-            {}
-          wheel0:
-            {}
-          wheel1:
-            {}
-          wheel2:
-            {}
+            wheel0:
+              {}
+            wheel1:
+              {}
+            wheel2:
+              {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -237,7 +237,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 1.5864956378936768
+      Distance: 1.7768751382827759
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -253,9 +253,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.6553983092308044
+      Pitch: 0.49479764699935913
       Target Frame: <Fixed Frame>
-      Yaw: 0.01727069914340973
+      Yaw: 0.9822874069213867
     Saved: ~
 Window Geometry:
   Displays:

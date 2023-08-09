@@ -2,8 +2,14 @@
 
 <robot name="trikey" xmlns:xacro="http://ros.org/wiki/xacro">
 
+<!-- Include Gazebo plugins -->
+<xacro:include filename="$(find trikey_description)/urdf/urdf_gazebo/robot.gazebo.xacro" />
 
-  <link name="base_link">
+
+  <link name= "base_link">
+  </link>
+
+  <link name="body_link">
     <visual>
       <origin xyz="0.00252107 -0.0402364 -0.0133064" rpy="0 -0 0" />
       <geometry>
@@ -29,8 +35,6 @@
     </inertial>
   </link>
 
-  <link name= "main_body_link">
-  </link>
 
   <!--  Wheels  -->
   <link name="wheel0">
@@ -139,7 +143,7 @@
 
 
   <!-- Azure Kinect Camera Link (Top Camera) -->
-  <link name="camera_base">
+  <link name="camera_link">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
@@ -183,15 +187,15 @@
 
   <!-- Joints -->
 
-  <joint name="main_body_joint" type="fixed">
-    <origin xyz="-0.1 -0.06 0" rpy="0 0 -1.57"/>
+  <joint name="body_joint" type="fixed">
+    <origin xyz="-0.06 0.1 0" rpy="0 0 1.57"/>
     <parent link="base_link"/>
-    <child link="main_body_link"/>
+    <child link="body_link"/>
   </joint>
 
   <joint name="wheel0_joint" type="continuous">
     <origin xyz="-0.103157 -0.317313 -0.144393" rpy="1.5708 0.599769 -5.54919e-17" />
-    <parent link="base_link" />
+    <parent link="body_link" />
     <child link="wheel0" />
     <axis xyz="0 0 1"/>
     <limit effort="2" velocity="20" />
@@ -200,7 +204,7 @@
 
   <joint name="wheel1_joint" type="continuous">
     <origin xyz="0.110261 0.0612702 -0.144393" rpy="1.5708 0.632117 2.0944" />
-    <parent link="base_link" />
+    <parent link="body_link" />
     <child link="wheel1" />
     <axis xyz="0 0 1"/>
     <limit effort="2" velocity="20" />
@@ -209,7 +213,7 @@
 
   <joint name="wheel2_joint" type="continuous">
     <origin xyz="-0.323445 0.0653045 -0.144393" rpy="-1.5708 -1.38778e-17 1.0472" />
-    <parent link="base_link" />
+    <parent link="body_link" />
     <child link="wheel2" />
     <axis xyz="0 0 1"/>
     <limit effort="2" velocity="20" />
@@ -220,7 +224,7 @@
   <!-- distance from chassis STL origin to actual center (manually tuned): [-0.103 -0.057 0] -->
   <joint name="lidar_joint" type="fixed">
     <origin xyz="-0.103 -0.289682 0.34108" rpy="0. 0. 1.57079632"/>
-    <parent link="base_link"/>
+    <parent link="body_link"/>
     <child link="lidar_link"/>
   </joint>
 
@@ -228,134 +232,16 @@
     <!-- Kinect Camera Joints -->
     <joint name="kinect_1_joint" type="fixed">
         <origin xyz="-0.1144 -0.261352 0.22108" rpy="0 -1.57079632679 1.57079632679"/>
-        <parent link="base_link"/>
-        <child link="camera_base"/>
+        <parent link="body_link"/>
+        <child link="camera_link"/>
     </joint>
 
 
     <joint name="kinect_1_lense_joint" type="fixed">
         <origin xyz="-0.03 0 0.01" rpy="3.14 -1.57 0"/>
-        <parent link="camera_base"/>
+        <parent link="camera_link"/>
         <child link="kinect_1_lense_link"/>
     </joint>
 
-
-  <!-- Camera Plugin for Gazebo -->
-  <!-- Note on gaussian noise statistics:
-  Noise is sampled independently per pixel on each frame. That pixel's noise value is added
-  to each of its color channels, which at that point lie in the range [0,1]. -->
-  <!-- Note on kinect plugin:
-  Keep update_rate to zero, update_rate in the parent <sensor> tag will control the frame rate. -->
-  <!-- Kinect Camera 1 -->
-    <gazebo reference="kinect_1_lense_link">
-      <sensor type="depth" name="camera1">
-        <update_rate>15.0</update_rate>
-        <camera name="kinect1">
-          <horizontal_fov>2.0944</horizontal_fov>
-          <image>
-            <width>512</width>
-            <height>512</height>
-            <format>R8G8B8</format>
-          </image>
-          <clip>
-            <near>0.02</near>
-            <far>300</far>
-          </clip>
-          <noise>
-            <type>gaussian</type>
-            <mean>0.5</mean>
-            <stddev>0.007</stddev>
-          </noise>
-        </camera>
-          <plugin name="kinect_plugin" filename="libgazebo_ros_openni_kinect.so">
-                <baseline>0.1</baseline>
-                <alwaysOn>true</alwaysOn>
-                <updateRate>0.0</updateRate>
-                <cameraName>kinect1</cameraName>
-                <imageTopicName>/kinect1/color/image_raw</imageTopicName>
-                <cameraInfoTopicName>/kinect1/camera_info</cameraInfoTopicName>
-                <depthImageTopicName>/kinect1/depth/image_raw</depthImageTopicName>
-                <depthImageInfoTopicName>/kinect1/depth/camera_info</depthImageInfoTopicName>
-                <pointCloudTopicName>/kinect1/points</pointCloudTopicName>
-                <frameName>kinect_1_lense_link</frameName>
-                <pointCloudCutoff>0.5</pointCloudCutoff>
-                <pointCloudCutoffMax>2.0</pointCloudCutoffMax>
-            </plugin>
-      </sensor>
-    </gazebo>
-
-
-
-  <!-- Transmissions: needed for ROS control -->
-  <transmission name="wheel0_simple_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="wheel0_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="wheel0_motor">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </actuator>
-  </transmission>
-
-  <transmission name="wheel1_simple_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="wheel1_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="wheel1_motor">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </actuator>
-  </transmission>
-
-  <transmission name="wheel2_simple_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="wheel2_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="wheel2_motor">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </actuator>
-  </transmission>
-
-  <!-- Sensors -->
-  <!--
-  <gazebo reference="lidar_link">
-    <sensor type="ray" name="rplidar">
-      <pose>0 0 0 0 0 0</pose>
-      <visualize>true</visualize>
-      <update_rate>10</update_rate>
-      <ray>
-        <scan>
-          <horizontal>
-            <samples>400</samples>
-            <resolution>1</resolution>
-	    <min_angle>-3.141592</min_angle>
-            <max_angle>3.141592 </max_angle>
-          </horizontal>
-        </scan>
-        <range>
-          <min>0.15</min>
-          <max>8.0</max>
-          <resolution>0.01</resolution>
-        </range>
-        <noise>
-          <type>gaussian</type>
-          <mean>0.0</mean>
-          <stddev>0.01</stddev>
-        </noise>
-      </ray>
-      <plugin name="gazebo_ros_lidar_controller" filename="libgazebo_ros_laser.so">
-        <topicName>/scan</topicName>
-        <frameName>base_link</frameName>
-      </plugin>
-    </sensor>
-  </gazebo>
- -->
-
-  <gazebo>
-    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-      <robotNamespace>/trikey</robotNamespace>
-    </plugin>
-  </gazebo>
 
 </robot>
