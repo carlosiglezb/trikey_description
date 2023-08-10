@@ -223,8 +223,8 @@
   <!-- Distance from chassis center to lidar are (from CAD): [0 -0.232682 0.34108] -->
   <!-- distance from chassis STL origin to actual center (manually tuned): [-0.103 -0.057 0] -->
   <joint name="lidar_joint" type="fixed">
-    <origin xyz="-0.103 -0.289682 0.34108" rpy="0. 0. 1.57079632"/>
-    <parent link="body_link"/>
+    <origin xyz="-0.136 -0.2355 0.34108" rpy="0. 0. 1.57079632"/>
+    <parent link="base_link"/>
     <child link="lidar_link"/>
   </joint>
 
