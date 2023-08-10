@@ -1,0 +1,633 @@
+<?xml version="1.0"?>
+<robot name="trikey" xmlns:xacro="http://ros.org/wiki/xacro">
+
+
+
+<!-- Lidar -->
+  <gazebo reference="lidar_link">
+    <sensor type="ray" name="rplidar">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>false</visualize>
+      <update_rate>10</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>400</samples>
+            <resolution>1</resolution>
+	          <min_angle>-3.141592</min_angle>
+            <max_angle>3.12414 </max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.15</min>
+          <max>8.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_lidar_controller" filename="libgazebo_ros_laser.so">
+        <topicName>/scan</topicName>
+        <frameName>lidar_link</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+
+  <!-- Camera Plugin for Gazebo -->
+    <!-- Kinect Camera 1 -->
+    <gazebo reference="kinect_1_lense_link">
+      <sensor type="depth" name="camera1">
+        <update_rate>15.0</update_rate>
+        <camera name="kinect1">
+          <horizontal_fov>2.0944</horizontal_fov>
+          <image>
+            <width>512</width>
+            <height>512</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.02</near>
+            <far>300</far>
+          </clip>
+          <noise>
+            <type>gaussian</type>
+            <!-- Noise is sampled independently per pixel on each frame.
+                That pixel's noise value is added to each of its color
+                channels, which at that point lie in the range [0,1]. -->
+            <mean>0.5</mean>
+            <stddev>0.007</stddev>
+          </noise>
+        </camera>
+          <plugin name="kinect_plugin" filename="libgazebo_ros_openni_kinect.so">
+                <baseline>0.1</baseline>
+                <alwaysOn>true</alwaysOn>
+                <!-- Keep this zero, update_rate in the parent <sensor> tag
+                will control the frame rate. -->
+                <updateRate>0.0</updateRate>
+                <cameraName>kinect1</cameraName>
+                <robotNamespace>/trikey</robotNamespace>
+                <imageTopicName>/kinect1/color/image_raw</imageTopicName>
+                <cameraInfoTopicName>/kinect1/camera_info</cameraInfoTopicName>
+                <depthImageTopicName>/kinect1/depth/image_raw</depthImageTopicName>
+                <depthImageInfoTopicName>/kinect1/depth/camera_info</depthImageInfoTopicName>
+                <pointCloudTopicName>/kinect1/points</pointCloudTopicName>
+                <frameName>kinect_1_lense_link</frameName>
+                <pointCloudCutoff>0.5</pointCloudCutoff>
+                <pointCloudCutoffMax>2.0</pointCloudCutoffMax>
+            </plugin>
+      </sensor>
+    </gazebo>
+  
+
+    <!-- Transmissions: needed for ROS control -->
+    <transmission name="wheel0_simple_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="wheel0_joint">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="wheel0_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </actuator>
+    </transmission>
+
+    <transmission name="wheel1_simple_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="wheel1_joint">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="wheel1_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </actuator>
+    </transmission>
+
+    <transmission name="wheel2_simple_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="wheel2_joint">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="wheel2_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </actuator>
+    </transmission>
+
+    <!--==================== Sensors ====================-->
+
+
+
+    <!-- Pose Ground Truth -->
+    <gazebo>
+        <plugin filename="libgazebo_ros_p3d.so" name="gazebo_ros_p3d">
+            <robotNamespace>/trikey</robotNamespace>
+            <frame_name>gazebo/odom</frame_name>
+            <bodyName>base_link</bodyName>
+            <topicName>ground_truth</topicName>
+            <frameName>world</frameName>
+            <gaussianNoise>0</gaussianNoise>
+            <alwaysOn>true</alwaysOn>
+            <updateRate>30</updateRate>
+        </plugin>
+    </gazebo>
+
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/trikey</robotNamespace>
+            <controlPeriod>0.001</controlPeriod>
+        </plugin>
+    </gazebo>
+
+
+    <!-- Fix jitter -->
+    <gazebo reference="8x750roller">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_2">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_3">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_4">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_5">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_6">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_7">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_8">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_9">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_10">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_11">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_12">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_13">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_14">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_15">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_16">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_17">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_18">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_19">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_20">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_21">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_22">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_23">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_24">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_25">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_26">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_27">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_28">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_29">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_30">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_31">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_32">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_33">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_34">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_35">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_36">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_37">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_38">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_39">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_40">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_41">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_42">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_43">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_44">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_45">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_46">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_47">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_48">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_49">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_50">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_51">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_52">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_53">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+    <gazebo reference="8x750roller_54">
+        <mu1>0.8</mu1>
+        <mu2>0.8</mu2>
+        <kp>50000.0</kp>
+        <kd>80.0</kd>
+        <minDepth>0.0001</minDepth>
+        <maxVel>0</maxVel>
+    </gazebo>
+
+
+
+
+</robot>

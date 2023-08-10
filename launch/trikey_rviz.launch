@@ -8,7 +8,7 @@
   <!--  Import URDF  -->
   <!-- With Rollers -->
   <group if="$(arg roller)">
-    <param name="robot_description" command="$(find xacro)/xacro '$(find trikey_description)/urdf/urdf_generator/robot_roller.urdf.xacro'"/>
+    <param name="robot_description" command="$(find xacro)/xacro '$(find trikey_description)/urdf/urdf_generator/robot.urdf.xacro'"/>
   </group>
 
   <!-- Without Rollers -->
