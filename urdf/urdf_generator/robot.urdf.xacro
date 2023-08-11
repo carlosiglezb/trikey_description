@@ -2049,8 +2049,8 @@
     </link>
 
     <joint name="lidar_mount_joint" type="fixed">
-        <origin xyz="0.0 -0.23 0.345" rpy="0.0 0.0 0.0"/>
-        <parent link="body_link"/>
+        <origin xyz="0.0 0.23 0.345" rpy="0.0 0.0 0.0"/>
+        <parent link="base_link"/>
         <child link="lidar_mount"/>
     </joint>
 
@@ -2169,8 +2169,8 @@
     <!-- Kinect Camera Joints -->
 
     <joint name="kinect_1_joint" type="fixed">
-        <origin xyz="-0.01239 -0.289682 0.28607" rpy="0 1.57 -1.57079632679"/>
-        <parent link="body_link"/>
+        <origin xyz="-0.01239 0.289682 0.28607" rpy="0 1.57 1.57079632679"/>
+        <parent link="base_link"/>
         <child link="kinect_1_link"/>
     </joint>
 
@@ -2202,7 +2202,7 @@
     <!-- Lidar Joint -->
     <joint name="rplidar_joint" type="fixed">
         <axis xyz="0 1 0" />
-        <origin xyz="0 0 0" rpy="0 0 3.14159"/>
+        <origin xyz="0 0 0" rpy="0 0 -1.54"/>
         <parent link="lidar_mount"/>
         <child link="rplidar_link"/>
     </joint>
