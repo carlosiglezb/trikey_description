@@ -39,7 +39,7 @@
 </inertial>
 </link>
 
-<link name="wheel">
+<link name="wheel0">
 <visual>
 <origin xyz="0.0157175 -0.000676884 -0.00283407" rpy="-1.5708 1.4944e-22 -1.48983e-28" />
 <geometry>
@@ -93,7 +93,7 @@
 
 <joint name="roller_w0_0" type="continuous">
 <origin xyz="0.0835653 -0.0394107 0.0065875" rpy="-1.5708 1.57079 -0.523599" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -128,7 +128,7 @@
 
 <joint name="roller_w0_1" type="continuous">
 <origin xyz="0.0665785 -0.0643294 0.0065875" rpy="-0.698132 1.5708 0" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_2" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -163,7 +163,7 @@
 
 <joint name="roller_w0_2" type="continuous">
 <origin xyz="0.0405614 -0.083221 0.0065875" rpy="-0.349066 1.5708 0" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_3" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -198,7 +198,7 @@
 
 <joint name="roller_w0_3" type="continuous">
 <origin xyz="0.009652 -0.092075 0.0065875" rpy="1.5708 1.5708 1.5708" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_4" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -233,7 +233,7 @@
 
 <joint name="roller_w0_4" type="continuous">
 <origin xyz="-0.0224216 -0.0898234 0.0065875" rpy="1.5708 1.57079 1.22173" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_5" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -268,7 +268,7 @@
 
 <joint name="roller_w0_5" type="continuous">
 <origin xyz="-0.0517908 -0.0767377 0.0065875" rpy="1.5708 1.57079 0.872665" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_6" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -303,7 +303,7 @@
 
 <joint name="roller_w0_6" type="continuous">
 <origin xyz="-0.0749133 -0.0543964 0.0065875" rpy="1.5708 1.57079 0.523599" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_7" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -338,7 +338,7 @@
 
 <joint name="roller_w0_7" type="continuous">
 <origin xyz="-0.0890001 -0.025494 0.0065875" rpy="1.5708 1.57079 0.174533" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_8" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -373,7 +373,7 @@
 
 <joint name="roller_w0_8" type="continuous">
 <origin xyz="-0.0923522 0.00648329 0.0065875" rpy="1.5708 1.57079 -0.174533" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_9" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -408,7 +408,7 @@
 
 <joint name="roller_w0_9" type="continuous">
 <origin xyz="-0.0845653 0.0376786 0.0065875" rpy="1.5708 1.57079 -0.523599" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_10" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -443,7 +443,7 @@
 
 <joint name="roller_w0_10" type="continuous">
 <origin xyz="-0.0665785 0.0643294 0.0065875" rpy="2.44346 1.5708 0" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_11" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -478,7 +478,7 @@
 
 <joint name="roller_w0_11" type="continuous">
 <origin xyz="-0.0405614 0.083221 0.0065875" rpy="2.79253 1.5708 0" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_12" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -513,7 +513,7 @@
 
 <joint name="roller_w0_12" type="continuous">
 <origin xyz="-0.009652 0.092075 0.0065875" rpy="-1.5708 1.5708 1.5708" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_13" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -548,7 +548,7 @@
 
 <joint name="roller_w0_13" type="continuous">
 <origin xyz="0.0224216 0.0898234 0.0065875" rpy="-1.5708 1.57079 1.22173" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_14" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -583,7 +583,7 @@
 
 <joint name="roller_w0_14" type="continuous">
 <origin xyz="0.0517908 0.0767377 0.0065875" rpy="-1.5708 1.57079 0.872665" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_15" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -618,7 +618,7 @@
 
 <joint name="roller_w0_15" type="continuous">
 <origin xyz="0.0749133 0.0543964 0.0065875" rpy="-1.5708 1.57079 0.523599" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_16" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -653,7 +653,7 @@
 
 <joint name="roller_w0_16" type="continuous">
 <origin xyz="0.0890001 0.025494 0.0065875" rpy="-1.5708 1.57079 0.174533" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_17" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -688,7 +688,7 @@
 
 <joint name="roller_w0_17" type="continuous">
 <origin xyz="0.0890001 -0.025494 0.0065875" rpy="1.5708 1.57079 -0.174533" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_18" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -698,13 +698,13 @@
 <joint name="wheel0_joint" type="continuous">
 <origin xyz="0.0076339 -0.242491 -0.130854" rpy="1.5708 1.50474e-12 2.69365e-06" />
 <parent link="body_link" />
-<child link="wheel" />
+<child link="wheel0" />
 <axis xyz="0 0 1"/>
 <limit effort="30" velocity="20" />
 <joint_properties friction="0.0"/>
 </joint>
 
-<link name="wheel_2">
+<link name="wheel1">
 <visual>
 <origin xyz="0.0157175 -0.000676884 -0.0110091" rpy="-1.5708 -7.59903e-17 5.39519e-23" />
 <geometry>
@@ -758,7 +758,7 @@
 
 <joint name="roller_w1_0" type="continuous">
 <origin xyz="-0.0749133 0.0543964 -0.0015875" rpy="-1.5708 1.77409e-06 -0.523599" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_19" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -793,7 +793,7 @@
 
 <joint name="roller_w1_1" type="continuous">
 <origin xyz="-0.0665785 0.0643294 -0.0015875" rpy="0.698132 -1.5708 0" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_20" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -828,7 +828,7 @@
 
 <joint name="roller_w1_2" type="continuous">
 <origin xyz="-0.0405614 0.083221 -0.0015875" rpy="0.349066 -1.5708 0" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_21" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -863,7 +863,7 @@
 
 <joint name="roller_w1_3" type="continuous">
 <origin xyz="-0.009652 0.092075 -0.0015875" rpy="-1.5708 -1.5708 1.5708" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_22" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -898,7 +898,7 @@
 
 <joint name="roller_w1_4" type="continuous">
 <origin xyz="0.0224216 0.0898234 -0.0015875" rpy="-1.5708 -1.57079 1.22173" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_23" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -933,7 +933,7 @@
 
 <joint name="roller_w1_5" type="continuous">
 <origin xyz="0.0517908 0.0767377 -0.0015875" rpy="-1.5708 -1.57079 0.872665" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_24" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -968,7 +968,7 @@
 
 <joint name="roller_w1_6" type="continuous">
 <origin xyz="0.0749133 0.0543964 -0.0015875" rpy="-1.5708 2.89145e-06 0.523599" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_25" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1003,7 +1003,7 @@
 
 <joint name="roller_w1_7" type="continuous">
 <origin xyz="0.0890001 0.025494 -0.0015875" rpy="-1.5708 2.84675e-06 0.174533" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_26" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1038,7 +1038,7 @@
 
 <joint name="roller_w1_8" type="continuous">
 <origin xyz="0.0923522 -0.00648329 -0.0015875" rpy="-1.5708 2.4587e-06 -0.174533" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_27" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1073,7 +1073,7 @@
 
 <joint name="roller_w1_9" type="continuous">
 <origin xyz="0.0845653 -0.0376786 -0.0015875" rpy="-1.5708 1.77409e-06 -0.523599" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_28" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1108,7 +1108,7 @@
 
 <joint name="roller_w1_10" type="continuous">
 <origin xyz="0.0665785 -0.0643294 -0.0015875" rpy="-2.44346 -1.5708 0" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_29" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1143,7 +1143,7 @@
 
 <joint name="roller_w1_11" type="continuous">
 <origin xyz="0.0405614 -0.083221 -0.0015875" rpy="-2.79253 -1.5708 0" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_30" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1178,7 +1178,7 @@
 
 <joint name="roller_w1_12" type="continuous">
 <origin xyz="0.009652 -0.092075 -0.0015875" rpy="1.5708 -1.5708 1.5708" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_31" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1213,7 +1213,7 @@
 
 <joint name="roller_w1_13" type="continuous">
 <origin xyz="-0.0224216 -0.0898234 -0.0015875" rpy="1.5708 -1.57079 1.22173" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_32" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1248,7 +1248,7 @@
 
 <joint name="roller_w1_14" type="continuous">
 <origin xyz="-0.0517908 -0.0767377 -0.0015875" rpy="1.5708 -1.57079 0.872665" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_33" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1283,7 +1283,7 @@
 
 <joint name="roller_w1_15" type="continuous">
 <origin xyz="-0.0749133 -0.0543964 -0.0015875" rpy="1.5708 2.89145e-06 0.523599" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_34" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1318,7 +1318,7 @@
 
 <joint name="roller_w1_16" type="continuous">
 <origin xyz="-0.0890001 -0.025494 -0.0015875" rpy="1.5708 2.84675e-06 0.174533" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_35" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1353,7 +1353,7 @@
 
 <joint name="roller_w1_17" type="continuous">
 <origin xyz="-0.0923522 0.00648329 -0.0015875" rpy="1.5708 2.4587e-06 -0.174533" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_36" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1363,13 +1363,13 @@
 <joint name="wheel1_joint" type="continuous">
 <origin xyz="-0.212654 0.132125 -0.130854" rpy="-1.5708 -1.50485e-12 1.0472" />
 <parent link="body_link" />
-<child link="wheel_2" />
+<child link="wheel1" />
 <axis xyz="0 0 1"/>
 <limit effort="30" velocity="20" />
 <joint_properties friction="0.0"/>
 </joint>
 
-<link name="wheel_3">
+<link name="wheel2">
 <visual>
 <origin xyz="0.0157175 -0.000676884 -0.0110091" rpy="-1.5708 1.21101e-16 3.64923e-22" />
 <geometry>
@@ -1423,7 +1423,7 @@
 
 <joint name="roller_w2_0" type="continuous">
 <origin xyz="0.0890001 -0.025494 -0.0015875" rpy="-1.5708 -3.04078e-06 2.96706" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_37" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1458,7 +1458,7 @@
 
 <joint name="roller_w2_1" type="continuous">
 <origin xyz="0.0923522 0.00648329 -0.0015875" rpy="-1.5708 1.48959e-08 -2.96706" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_38" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1493,7 +1493,7 @@
 
 <joint name="roller_w2_2" type="continuous">
 <origin xyz="0.0845653 0.0376786 -0.0015875" rpy="-1.5708 -7.70262e-17 -2.61799" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_39" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1528,7 +1528,7 @@
 
 <joint name="roller_w2_3" type="continuous">
 <origin xyz="0.0665785 0.0643294 -0.0015875" rpy="2.44346 -1.5708 0" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_40" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1563,7 +1563,7 @@
 
 <joint name="roller_w2_4" type="continuous">
 <origin xyz="0.0405614 0.083221 -0.0015875" rpy="2.79253 -1.5708 0" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_41" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1598,7 +1598,7 @@
 
 <joint name="roller_w2_5" type="continuous">
 <origin xyz="0.009652 0.092075 -0.0015875" rpy="-3.14159 -1.5708 0" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_42" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1633,7 +1633,7 @@
 
 <joint name="roller_w2_6" type="continuous">
 <origin xyz="-0.0224216 0.0898234 -0.0015875" rpy="-2.79253 -1.5708 0" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_43" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1668,7 +1668,7 @@
 
 <joint name="roller_w2_7" type="continuous">
 <origin xyz="-0.0517908 0.0767377 -0.0015875" rpy="-2.44346 -1.5708 0" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_44" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1703,7 +1703,7 @@
 
 <joint name="roller_w2_8" type="continuous">
 <origin xyz="-0.0749133 0.0543964 -0.0015875" rpy="1.5708 -9.29494e-17 2.61799" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_45" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1738,7 +1738,7 @@
 
 <joint name="roller_w2_9" type="continuous">
 <origin xyz="-0.0890001 0.025494 -0.0015875" rpy="1.5708 -1.2854e-17 2.96706" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_46" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1773,7 +1773,7 @@
 
 <joint name="roller_w2_10" type="continuous">
 <origin xyz="-0.0923522 -0.00648329 -0.0015875" rpy="1.5708 -5.86296e-17 -2.96706" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_47" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1808,7 +1808,7 @@
 
 <joint name="roller_w2_11" type="continuous">
 <origin xyz="-0.0845653 -0.0376786 -0.0015875" rpy="1.5708 -7.70262e-17 -2.61799" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_48" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1843,7 +1843,7 @@
 
 <joint name="roller_w2_12" type="continuous">
 <origin xyz="-0.0665785 -0.0643294 -0.0015875" rpy="-0.698132 -1.5708 0" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_49" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1878,7 +1878,7 @@
 
 <joint name="roller_w2_13" type="continuous">
 <origin xyz="-0.0405614 -0.083221 -0.0015875" rpy="-0.349066 -1.5708 0" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_50" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1913,7 +1913,7 @@
 
 <joint name="roller_w2_14" type="continuous">
 <origin xyz="-0.009652 -0.092075 -0.0015875" rpy="7.41518e-14 -1.5708 0" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_51" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1948,7 +1948,7 @@
 
 <joint name="roller_w2_15" type="continuous">
 <origin xyz="0.0224216 -0.0898234 -0.0015875" rpy="0.349066 -1.5708 0" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_52" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1983,7 +1983,7 @@
 
 <joint name="roller_w2_16" type="continuous">
 <origin xyz="0.0517908 -0.0767377 -0.0015875" rpy="0.698132 -1.5708 0" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_53" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -2018,7 +2018,7 @@
 
 <joint name="roller_w2_17" type="continuous">
 <origin xyz="0.0749133 -0.0543964 -0.0015875" rpy="-1.5708 -9.29511e-17 2.61799" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_54" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -2028,7 +2028,7 @@
 <joint name="wheel2_joint" type="continuous">
 <origin xyz="0.227979 0.132092 -0.130855" rpy="-1.5708 -3.25141e-07 -1.04719" />
 <parent link="body_link" />
-<child link="wheel_3" />
+<child link="wheel2" />
 <axis xyz="0 0 1"/>
 <limit effort="30" velocity="20" />
 <joint_properties friction="0.0"/>
