@@ -2055,7 +2055,7 @@
     </joint>
 
     <!-- Lidar Link -->
-  <link name="rplidar_link">
+  <link name="lidar_link">
     <collision>
       <origin xyz="0 0 0" rpy="1.5707 0 1.5707"/>
       <geometry>
@@ -2204,7 +2204,7 @@
         <axis xyz="0 1 0" />
         <origin xyz="0 0 0" rpy="0 0 -1.54"/>
         <parent link="lidar_mount"/>
-        <child link="rplidar_link"/>
+        <child link="lidar_link"/>
     </joint>
 
     
