@@ -1,6 +1,19 @@
 <?xml version="1.0"?>
 <robot name="trikey" xmlns:xacro="http://ros.org/wiki/xacro">
 
+<!-- Planer Controller -->
+  <gazebo>
+    <plugin name="trikey_controller" filename="libgazebo_ros_planar_move.so">
+      <commandTopic>gazebo/cmd_vel</commandTopic>
+      <publishTf>false</publishTf>
+      <publishOdometryTf>false</publishOdometryTf>
+      <publishOdomTF>false</publishOdomTF>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometryRate>30.0</odometryRate>
+      <robotBaseFrame>base_link</robotBaseFrame>
+    </plugin>
+  </gazebo>
 
 
 <!-- Lidar -->
@@ -84,7 +97,7 @@
   
 
     <!-- Transmissions: needed for ROS control -->
-    <transmission name="wheel0_simple_trans">
+    <!-- <transmission name="wheel0_simple_trans">
         <type>transmission_interface/SimpleTransmission</type>
         <joint name="wheel0_joint">
             <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
@@ -112,10 +125,10 @@
         <actuator name="wheel2_motor">
             <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
         </actuator>
-    </transmission>
+    </transmission> -->
+
 
     <!--==================== Sensors ====================-->
-
 
 
     <!-- Pose Ground Truth -->
@@ -140,8 +153,9 @@
     </gazebo>
 
 
+    <!-- Roller Friction  -->
     <!-- Fix jitter -->
-    <gazebo reference="8x750roller">
+    <!-- <gazebo reference="8x750roller">
         <mu1>0.8</mu1>
         <mu2>0.8</mu2>
         <kp>50000.0</kp>
@@ -625,7 +639,7 @@
         <kd>80.0</kd>
         <minDepth>0.0001</minDepth>
         <maxVel>0</maxVel>
-    </gazebo>
+    </gazebo> -->
 
 
 
