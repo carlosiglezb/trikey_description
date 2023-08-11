@@ -2,7 +2,7 @@
 <launch>
   
   <arg name = "gui" default = "false" />
-  <arg name = "roller" default = "false" />
+  <arg name = "roller" default = "true" />
 
 
   <!--  Import URDF  -->
