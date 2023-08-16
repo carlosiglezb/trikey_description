@@ -2,7 +2,7 @@
 <launch>
   
   <arg name = "gui" default = "false" />
-  <arg name = "roller" default = "true" />
+  <arg name = "roller" default = "false" />
 
 
   <!--  Import URDF  -->
@@ -13,7 +13,7 @@
 
   <!-- Without Rollers -->
   <group unless="$(arg roller)">
-    <param name="robot_description" command="$(find xacro)/xacro '$(find trikey_description)/urdf/TrikeyBaseAssembly.urdf.xacro'"/>
+    <param name="robot_description" command="$(find xacro)/xacro '$(find trikey_description)/urdf/urdf_generator/simbot.urdf.xacro'"/>
   </group>
 
 

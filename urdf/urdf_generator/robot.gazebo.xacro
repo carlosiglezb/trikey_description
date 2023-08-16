@@ -2,18 +2,43 @@
 <robot name="trikey" xmlns:xacro="http://ros.org/wiki/xacro">
 
 <!-- Planer Controller -->
-  <gazebo>
+  <!-- <gazebo>
     <plugin name="trikey_controller" filename="libgazebo_ros_planar_move.so">
       <commandTopic>gazebo/cmd_vel</commandTopic>
       <publishTf>false</publishTf>
       <publishOdometryTf>false</publishOdometryTf>
       <publishOdomTF>false</publishOdomTF>
-      <odometryTopic>odom</odometryTopic>
-      <odometryFrame>odom</odometryFrame>
+      <odometryTopic>gazebo/odom</odometryTopic>
+      <odometryFrame>gazebo/odom</odometryFrame>
       <odometryRate>30.0</odometryRate>
       <robotBaseFrame>base_link</robotBaseFrame>
     </plugin>
+  </gazebo> -->
+
+<!--Diff Drive Controller  -->
+  <gazebo>
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+      <commandTopic>gazebo/cmd_vel</commandTopic>
+      <odometryTopic>dd/odom</odometryTopic>
+      <odometryFrame>dd/odom</odometryFrame>
+      <odometrySource>world</odometrySource>
+      <publishOdomTF>false</publishOdomTF>
+      <robotBaseFrame>base_link</robotBaseFrame>
+      <publishWheelTF>false</publishWheelTF>
+      <publishTf>false</publishTf>
+      <publishWheelJointState>true</publishWheelJointState>
+      <legacyMode>false</legacyMode>
+      <updateRate>30</updateRate>
+      <leftJoint>wheel0_joint</leftJoint>
+      <rightJoint>wheel1_joint</rightJoint>
+      <wheelSeparation>0.6</wheelSeparation>
+      <wheelDiameter>0.5</wheelDiameter>
+      <wheelAcceleration>50</wheelAcceleration>
+      <wheelTorque>100</wheelTorque>
+      <rosDebugLevel>na</rosDebugLevel>
+    </plugin>
   </gazebo>
+
 
 
 <!-- Lidar -->
