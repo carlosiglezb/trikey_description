@@ -2151,11 +2151,12 @@
     </visual>
   </link>
 
-  <joint_name ="base_link_to_camera_base" type="fixed">
-    <parent link="base_link" />
-    <child link="camera_base" />
-    <origin xyz="-0.01239 0.289682 0.28607" rpy="0.0 0.0 1.57079632679" />
+  <joint name="base_link_to_camera_base" type="fixed">
+      <origin xyz="-0.01239 0.289682 0.28607" rpy="-1.57 0.0 1.57079632679" />
+      <parent link="base_link" />
+      <child link="camera_base" />
   </joint>
+
 
 
   <joint name="camera_base_to_body" type="fixed">
@@ -2183,8 +2184,6 @@
     </visual>
   </link>
 
-
-
     <!-- Kinect Camera Joints -->
 
     <joint name="kinect_1_joint" type="fixed">
@@ -2193,16 +2192,11 @@
         <child link="kinect_1_link"/>
     </joint>
 
-
-
     <joint name="kinect_1_lense_joint" type="fixed">
         <origin xyz="-0.03 0 0.01" rpy="3.14 -1.57 0"/>
         <parent link="kinect_1_link"/>
         <child link="kinect_1_lense_link"/>
     </joint>
-
-
-
 
     <!-- Lidar Joint -->
     <joint name="rplidar_joint" type="fixed">
