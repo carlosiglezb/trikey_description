@@ -31,7 +31,7 @@
       <updateRate>30</updateRate>
       <leftJoint>wheel0_joint</leftJoint>
       <rightJoint>wheel1_joint</rightJoint>
-      <wheelSeparation>0.6</wheelSeparation>
+      <wheelSeparation>0.5</wheelSeparation>
       <wheelDiameter>0.5</wheelDiameter>
       <wheelAcceleration>50</wheelAcceleration>
       <wheelTorque>100</wheelTorque>
