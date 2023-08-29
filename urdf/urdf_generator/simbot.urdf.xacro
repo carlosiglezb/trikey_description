@@ -1,6 +1,20 @@
 <?xml version="1.1"?>
 <robot name="trikey" xmlns:xacro="http://ros.org/wiki/xacro">
 
+
+  <material name="black">
+    <color rgba="0. 0. 0. 1" />
+  </material>
+  <material name="dark_grey">
+    <color rgba="0.1 0.1 0.1 1" />
+  </material>
+  <material name="grey">
+    <color rgba="0.6 0.6 0.6 1" />
+  </material>
+  <material name="white">
+    <color rgba="0.9 0.9 0.9 1" />
+  </material>
+
 <xacro:include filename="$(find trikey_description)/urdf/urdf_generator/robot.gazebo.xacro" />
 
 
@@ -8,7 +22,7 @@
 </link>
 
 <joint name="body_joint" type="fixed">
-    <origin xyz="0 0 0" rpy="0 0 1.0472"/>
+    <origin xyz="0 0 0" rpy="0 0 -0.523"/>
     <parent link="base_link"/>
     <child link="body_link"/>
 </joint>
@@ -91,6 +105,24 @@
 </inertial>
 </link>
 
+<joint name="wheel1_joint" type="continuous">
+<origin xyz="0.0076339 -0.242491 -0.130854" rpy="1.5708 1.50474e-12 2.69365e-06" />
+<parent link="body_link" />
+<child link="wheel1" />
+<axis xyz="0 0 1"/>
+<limit effort="30" velocity="20" />
+<joint_properties friction="0.0"/>
+</joint>
+
+
+<joint name="wheel0_joint" type="continuous">
+<origin xyz="-0.212654 0.132125 -0.130854" rpy="-1.5708 -1.50485e-12 1.0472" />
+<parent link="body_link" />
+<child link="wheel0" />
+<axis xyz="0 0 1"/>
+<limit effort="30" velocity="20" />
+<joint_properties friction="0.0"/>
+</joint>
 
 <link name="wheel2">
 <visual>
@@ -118,24 +150,6 @@
 </inertial>
 </link>
 
-<joint name="wheel0_joint" type="continuous">
-<origin xyz="0.0076339 -0.242491 -0.130854" rpy="1.5708 1.50474e-12 2.69365e-06" />
-<parent link="body_link" />
-<child link="wheel0" />
-<axis xyz="0 0 1"/>
-<limit effort="30" velocity="20" />
-<joint_properties friction="0.0"/>
-</joint>
-
-<joint name="wheel1_joint" type="continuous">
-<origin xyz="-0.212654 0.132125 -0.130854" rpy="-1.5708 -1.50485e-12 1.0472" />
-<parent link="body_link" />
-<child link="wheel1" />
-<axis xyz="0 0 1"/>
-<limit effort="30" velocity="20" />
-<joint_properties friction="0.0"/>
-</joint>
-
 
 
 <joint name="wheel2_joint" type="continuous">
@@ -162,7 +176,7 @@
     </link>
 
     <joint name="lidar_mount_joint" type="fixed">
-        <origin xyz="0.0 0.23 0.345" rpy="0.0 0.0 0.0"/>
+        <origin xyz="0.23 0.0 0.345" rpy="0.0 0.0 0.0"/>
         <parent link="base_link"/>
         <child link="lidar_mount"/>
     </joint>
@@ -220,35 +234,58 @@
         </inertial>
     </link>
 
+  <link name="camera_body">
+    <visual>
+      <origin xyz="0. 0. 0." />
+      <geometry>
+        <box size="0.0994 0.0996 0.023" />
+      </geometry>
+      <material name="white" />
+    </visual>
+  </link>
 
-    <!-- Azure Kinect Camera Link (Bottom Camera) -->
-    <!-- <link name="kinect_2_link">
-        <visual>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-            <geometry>
-                <mesh filename="package://trikey_description/meshes/Azure_Kinect.stl"/>
-            </geometry>
-            <material name="kinect_material">
-                <color rgba="0.9 0.2 0.24 1.0"/>
-            </material>
-        </visual>
+  <link name="camera_base">
+    <visual>
+      <origin xyz="-0.013 0. 0." />
+      <geometry>
+        <box size="0.026 0.103 0.039" />
+      </geometry>
+      <material name="grey" />
+    </visual>
+  </link>
 
-        <collision>
-            <origin xyz="0.0 0.0 0.0"/>
-            <geometry>
-                <mesh filename="package://trikey_description/meshes/Azure_Kinect.stl"/>
-            </geometry>
-            <material name="kinect_material">
-                <color rgba="0.9 0.2 0.24 1.0"/>
-            </material>
-        </collision>
+  <link name="camera_visor">
+    <visual>
+      <origin xyz="-0.0128 0. 0." />
+      <geometry>
+        <box size="0.026 0.101 0.037" />
+      </geometry>
+      <material name="black" />
+    </visual>
+  </link>
 
-        <inertial>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-            <mass value=".44" />
-            <inertia ixx="10.173985" ixy="0.212137"  ixz="-0.09591" iyy="5.191632" iyz="0.505713" izz="5.853716" />
-        </inertial>
-    </link> -->
+  <joint name="base_link_to_camera_base" type="fixed">
+      <origin xyz="0.289682 -0.01239 0.28607" rpy="-1.57 0.0 0.0" />
+      <parent link="base_link" />
+      <child link="camera_base" />
+  </joint>
+
+
+
+  <joint name="camera_base_to_body" type="fixed">
+    <parent link="camera_base" />
+    <child link="camera_body" />
+    <origin xyz="-0.0757 0. 0.008" rpy="0. 0. 0." />
+  </joint>
+
+  <joint name="camera_base_to_visor" type="fixed">
+    <parent link="camera_base" />
+    <child link="camera_visor" />
+    <origin xyz="0. 0. 0." rpy="0. 0. 0." />
+  </joint>
+
+
+
 
   <!-- Azure Kinect Camera Lense Link (Top Camera) -->
   <link name="kinect_1_lense_link">
@@ -260,38 +297,13 @@
     </visual>
   </link>
 
-  <!-- Azure Kinect Camera Lense Link (Bottom Camera) -->
-  <!-- <link name="kinect_2_lense_link">
-    <visual>
-      <origin xyz="0 0 0" rpy="0 1.57 0" />
-      <geometry>
-        <cylinder length="0.001" radius="0.01"/>
-      </geometry>
-    </visual>
-  </link>
-
-<link name="kinect_2_pcl_link">
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <cylinder length="0.001" radius="0.01"/>
-      </geometry>
-    </visual>
-  </link> -->
-
     <!-- Kinect Camera Joints -->
 
     <joint name="kinect_1_joint" type="fixed">
-        <origin xyz="-0.01239 0.289682 0.28607" rpy="0 1.57 1.57079632679"/>
+        <origin xyz="0.289682 -0.01239 0.28607" rpy="0 1.57 0"/>
         <parent link="base_link"/>
         <child link="kinect_1_link"/>
     </joint>
-
-    <!-- <joint name="kinect_2_joint" type="fixed">
-        <origin xyz="0.01239 -0.289682 0.1734" rpy="0 2.0943951023931953 -1.57079632679"/>
-        <parent link="body_link"/>
-        <child link="kinect_2_link"/>
-    </joint> -->
 
     <joint name="kinect_1_lense_joint" type="fixed">
         <origin xyz="-0.03 0 0.01" rpy="3.14 -1.57 0"/>
@@ -299,23 +311,10 @@
         <child link="kinect_1_lense_link"/>
     </joint>
 
-    <!-- <joint name="kinect_2_lense_joint" type="fixed">
-        <origin xyz="-0.03 0 0.01" rpy="0 -1.57 0"/>
-        <parent link="kinect_2_link"/>
-        <child link="kinect_2_lense_link"/>
-    </joint>
-
-    <joint name="kinect_2_pcl_joint" type="fixed">
-        <origin xyz="0 0 0" rpy="0 0 -1.57079632679"/>
-        <parent link="kinect_2_link"/>
-        <child link="kinect_2_pcl_link"/>
-    </joint> -->
-
-
     <!-- Lidar Joint -->
     <joint name="rplidar_joint" type="fixed">
         <axis xyz="0 1 0" />
-        <origin xyz="0 0 0" rpy="0 0 -1.54"/>
+        <origin xyz="0 0 0" rpy="0 0 3.14"/>
         <parent link="lidar_mount"/>
         <child link="lidar_link"/>
     </joint>

@@ -18,7 +18,7 @@
 <!--Diff Drive Controller  -->
   <gazebo>
     <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
-      <commandTopic>gazebo/cmd_vel</commandTopic>
+      <commandTopic>trikey/base_controller/cmd_vel</commandTopic>
       <odometryTopic>odom</odometryTopic>
       <odometryFrame>odom</odometryFrame>
       <odometrySource>world</odometrySource>
