@@ -22,7 +22,7 @@
 </link>
 
 <joint name="body_joint" type="fixed">
-    <origin xyz="0 0 0" rpy="0 0 1.0472"/>
+    <origin xyz="0 0 0" rpy="0 0 -0.523"/>
     <parent link="base_link"/>
     <child link="body_link"/>
 </joint>
@@ -709,10 +709,10 @@
 <joint_properties friction="0.0"/>
 </joint>
 
-<joint name="wheel0_joint" type="continuous">
+<joint name="wheel1_joint" type="continuous">
 <origin xyz="0.0076339 -0.242491 -0.130854" rpy="1.5708 1.50474e-12 2.69365e-06" />
 <parent link="body_link" />
-<child link="wheel0" />
+<child link="wheel1" />
 <axis xyz="0 0 1"/>
 <limit effort="30" velocity="20" />
 <joint_properties friction="0.0"/>
@@ -1374,10 +1374,10 @@
 <joint_properties friction="0.0"/>
 </joint>
 
-<joint name="wheel1_joint" type="continuous">
+<joint name="wheel0_joint" type="continuous">
 <origin xyz="-0.212654 0.132125 -0.130854" rpy="-1.5708 -1.50485e-12 1.0472" />
 <parent link="body_link" />
-<child link="wheel1" />
+<child link="wheel0" />
 <axis xyz="0 0 1"/>
 <limit effort="30" velocity="20" />
 <joint_properties friction="0.0"/>
@@ -2063,7 +2063,7 @@
     </link>
 
     <joint name="lidar_mount_joint" type="fixed">
-        <origin xyz="0.0 0.23 0.345" rpy="0.0 0.0 0.0"/>
+        <origin xyz="0.23 0.0 0.345" rpy="0.0 0.0 0.0"/>
         <parent link="base_link"/>
         <child link="lidar_mount"/>
     </joint>
@@ -2152,7 +2152,7 @@
   </link>
 
   <joint name="base_link_to_camera_base" type="fixed">
-      <origin xyz="-0.01239 0.289682 0.28607" rpy="-1.57 0.0 1.57079632679" />
+      <origin xyz="0.289682 -0.01239 0.28607" rpy="-1.57 0.0 0.0" />
       <parent link="base_link" />
       <child link="camera_base" />
   </joint>
@@ -2187,7 +2187,7 @@
     <!-- Kinect Camera Joints -->
 
     <joint name="kinect_1_joint" type="fixed">
-        <origin xyz="-0.01239 0.289682 0.28607" rpy="0 1.57 1.57079632679"/>
+        <origin xyz="0.289682 -0.01239 0.28607" rpy="0 1.57 0"/>
         <parent link="base_link"/>
         <child link="kinect_1_link"/>
     </joint>

@@ -2,25 +2,25 @@
 <robot name="trikey" xmlns:xacro="http://ros.org/wiki/xacro">
 
 <!-- Planer Controller -->
-  <!-- <gazebo>
+  <gazebo>
     <plugin name="trikey_controller" filename="libgazebo_ros_planar_move.so">
       <commandTopic>gazebo/cmd_vel</commandTopic>
       <publishTf>false</publishTf>
       <publishOdometryTf>false</publishOdometryTf>
       <publishOdomTF>false</publishOdomTF>
-      <odometryTopic>gazebo/odom</odometryTopic>
-      <odometryFrame>gazebo/odom</odometryFrame>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
       <odometryRate>30.0</odometryRate>
       <robotBaseFrame>base_link</robotBaseFrame>
     </plugin>
-  </gazebo> -->
+  </gazebo>
 
 <!--Diff Drive Controller  -->
-  <gazebo>
+  <!-- <gazebo>
     <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
       <commandTopic>gazebo/cmd_vel</commandTopic>
-      <odometryTopic>dd/odom</odometryTopic>
-      <odometryFrame>dd/odom</odometryFrame>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
       <odometrySource>world</odometrySource>
       <publishOdomTF>false</publishOdomTF>
       <robotBaseFrame>base_link</robotBaseFrame>
@@ -37,7 +37,7 @@
       <wheelTorque>100</wheelTorque>
       <rosDebugLevel>na</rosDebugLevel>
     </plugin>
-  </gazebo>
+  </gazebo> -->
 
 
 
