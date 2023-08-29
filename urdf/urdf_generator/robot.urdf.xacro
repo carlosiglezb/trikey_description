@@ -2201,7 +2201,7 @@
     <!-- Lidar Joint -->
     <joint name="rplidar_joint" type="fixed">
         <axis xyz="0 1 0" />
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="0 0 3.14"/>
         <parent link="lidar_mount"/>
         <child link="lidar_link"/>
     </joint>
