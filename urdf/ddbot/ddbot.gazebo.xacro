@@ -29,14 +29,14 @@
  <!--Diff Drive Controller  -->
   <gazebo>
     <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
-      <commandTopic>cmd_vel</commandTopic>
-      <odometryTopic>odom</odometryTopic>
-      <odometryFrame>odom</odometryFrame>
+      <commandTopic>gazebo/cmd_vel</commandTopic>
+      <odometryTopic>gazebo/odom</odometryTopic>
+      <odometryFrame>gazebo/odom</odometryFrame>
       <odometrySource>world</odometrySource>
       <publishOdomTF>true</publishOdomTF>
       <robotBaseFrame>dummy_link</robotBaseFrame>
       <publishWheelTF>false</publishWheelTF>
-      <publishTf>true</publishTf>
+      <publishTf>false</publishTf>
       <publishWheelJointState>true</publishWheelJointState>
       <legacyMode>false</legacyMode>
       <updateRate>30</updateRate>
@@ -65,7 +65,7 @@
                 <resolution>1</resolution>
               <!-- 360-degree scan -->
                 <min_angle>-3.141593</min_angle>
-                <max_angle>3.141593</max_angle>
+                <max_angle>3.12414</max_angle>
               </horizontal>
 	    </scan>
             <range>

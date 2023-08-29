@@ -6,7 +6,7 @@
   settings in gazebo, refer to ddbot.gazebo.xacro -->
 
 <robot name="ddbot" xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:include filename="$(find trikey_description)/urdf/ddbot.gazebo.xacro" />
+  <xacro:include filename="$(find trikey_description)/urdf/ddbot/ddbot.gazebo.xacro" />
   
   <xacro:property name="yaml_file" value="$(find trikey_description)/config/ddbot.yaml" />
 

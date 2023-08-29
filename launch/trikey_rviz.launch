@@ -2,10 +2,20 @@
 <launch>
   
   <arg name = "gui" default = "false" />
+  <arg name = "roller" default = "true" />
 
 
   <!--  Import URDF  -->
- <param name="robot_description" command="$(find xacro)/xacro '$(find trikey_description)/urdf/urdf_generator/robot.urdf.xacro'"/>
+  <!-- With Rollers -->
+  <group if="$(arg roller)">
+    <param name="robot_description" command="$(find xacro)/xacro '$(find trikey_description)/urdf/urdf_generator/robot.urdf.xacro'"/>
+  </group>
+
+  <!-- Without Rollers -->
+  <group unless="$(arg roller)">
+    <param name="robot_description" command="$(find xacro)/xacro '$(find trikey_description)/urdf/urdf_generator/simbot.urdf.xacro'"/>
+  </group>
+
 
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
 

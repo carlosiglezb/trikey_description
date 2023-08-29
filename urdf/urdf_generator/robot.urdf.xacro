@@ -2,7 +2,32 @@
 <robot name="trikey" xmlns:xacro="http://ros.org/wiki/xacro">
 
 
-<link name="base_link">
+  <material name="black">
+    <color rgba="0. 0. 0. 1" />
+  </material>
+  <material name="dark_grey">
+    <color rgba="0.1 0.1 0.1 1" />
+  </material>
+  <material name="grey">
+    <color rgba="0.6 0.6 0.6 1" />
+  </material>
+  <material name="white">
+    <color rgba="0.9 0.9 0.9 1" />
+  </material>
+
+<xacro:include filename="$(find trikey_description)/urdf/urdf_generator/robot.gazebo.xacro" />
+
+
+<link name= "base_link">
+</link>
+
+<joint name="body_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 -0.523"/>
+    <parent link="base_link"/>
+    <child link="body_link"/>
+</joint>
+
+<link name="body_link">
 <visual>
 <origin xyz="0.007652 0.00490494 0.000231732" rpy="-1.11735e-06 1.93532e-06 2.69365e-06" />
 <geometry>
@@ -28,7 +53,7 @@
 </inertial>
 </link>
 
-<link name="wheel">
+<link name="wheel0">
 <visual>
 <origin xyz="0.0157175 -0.000676884 -0.00283407" rpy="-1.5708 1.4944e-22 -1.48983e-28" />
 <geometry>
@@ -82,7 +107,7 @@
 
 <joint name="roller_w0_0" type="continuous">
 <origin xyz="0.0835653 -0.0394107 0.0065875" rpy="-1.5708 1.57079 -0.523599" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -117,7 +142,7 @@
 
 <joint name="roller_w0_1" type="continuous">
 <origin xyz="0.0665785 -0.0643294 0.0065875" rpy="-0.698132 1.5708 0" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_2" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -152,7 +177,7 @@
 
 <joint name="roller_w0_2" type="continuous">
 <origin xyz="0.0405614 -0.083221 0.0065875" rpy="-0.349066 1.5708 0" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_3" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -187,7 +212,7 @@
 
 <joint name="roller_w0_3" type="continuous">
 <origin xyz="0.009652 -0.092075 0.0065875" rpy="1.5708 1.5708 1.5708" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_4" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -222,7 +247,7 @@
 
 <joint name="roller_w0_4" type="continuous">
 <origin xyz="-0.0224216 -0.0898234 0.0065875" rpy="1.5708 1.57079 1.22173" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_5" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -257,7 +282,7 @@
 
 <joint name="roller_w0_5" type="continuous">
 <origin xyz="-0.0517908 -0.0767377 0.0065875" rpy="1.5708 1.57079 0.872665" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_6" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -292,7 +317,7 @@
 
 <joint name="roller_w0_6" type="continuous">
 <origin xyz="-0.0749133 -0.0543964 0.0065875" rpy="1.5708 1.57079 0.523599" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_7" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -327,7 +352,7 @@
 
 <joint name="roller_w0_7" type="continuous">
 <origin xyz="-0.0890001 -0.025494 0.0065875" rpy="1.5708 1.57079 0.174533" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_8" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -362,7 +387,7 @@
 
 <joint name="roller_w0_8" type="continuous">
 <origin xyz="-0.0923522 0.00648329 0.0065875" rpy="1.5708 1.57079 -0.174533" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_9" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -397,7 +422,7 @@
 
 <joint name="roller_w0_9" type="continuous">
 <origin xyz="-0.0845653 0.0376786 0.0065875" rpy="1.5708 1.57079 -0.523599" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_10" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -432,7 +457,7 @@
 
 <joint name="roller_w0_10" type="continuous">
 <origin xyz="-0.0665785 0.0643294 0.0065875" rpy="2.44346 1.5708 0" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_11" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -467,7 +492,7 @@
 
 <joint name="roller_w0_11" type="continuous">
 <origin xyz="-0.0405614 0.083221 0.0065875" rpy="2.79253 1.5708 0" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_12" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -502,7 +527,7 @@
 
 <joint name="roller_w0_12" type="continuous">
 <origin xyz="-0.009652 0.092075 0.0065875" rpy="-1.5708 1.5708 1.5708" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_13" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -537,7 +562,7 @@
 
 <joint name="roller_w0_13" type="continuous">
 <origin xyz="0.0224216 0.0898234 0.0065875" rpy="-1.5708 1.57079 1.22173" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_14" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -572,7 +597,7 @@
 
 <joint name="roller_w0_14" type="continuous">
 <origin xyz="0.0517908 0.0767377 0.0065875" rpy="-1.5708 1.57079 0.872665" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_15" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -607,7 +632,7 @@
 
 <joint name="roller_w0_15" type="continuous">
 <origin xyz="0.0749133 0.0543964 0.0065875" rpy="-1.5708 1.57079 0.523599" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_16" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -642,7 +667,7 @@
 
 <joint name="roller_w0_16" type="continuous">
 <origin xyz="0.0890001 0.025494 0.0065875" rpy="-1.5708 1.57079 0.174533" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_17" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -677,23 +702,23 @@
 
 <joint name="roller_w0_17" type="continuous">
 <origin xyz="0.0890001 -0.025494 0.0065875" rpy="1.5708 1.57079 -0.174533" />
-<parent link="wheel" />
+<parent link="wheel0" />
 <child link="8x750roller_18" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
 <joint_properties friction="0.0"/>
 </joint>
 
-<joint name="wheel0_joint" type="continuous">
+<joint name="wheel1_joint" type="continuous">
 <origin xyz="0.0076339 -0.242491 -0.130854" rpy="1.5708 1.50474e-12 2.69365e-06" />
-<parent link="base_link" />
-<child link="wheel" />
+<parent link="body_link" />
+<child link="wheel1" />
 <axis xyz="0 0 1"/>
 <limit effort="30" velocity="20" />
 <joint_properties friction="0.0"/>
 </joint>
 
-<link name="wheel_2">
+<link name="wheel1">
 <visual>
 <origin xyz="0.0157175 -0.000676884 -0.0110091" rpy="-1.5708 -7.59903e-17 5.39519e-23" />
 <geometry>
@@ -747,7 +772,7 @@
 
 <joint name="roller_w1_0" type="continuous">
 <origin xyz="-0.0749133 0.0543964 -0.0015875" rpy="-1.5708 1.77409e-06 -0.523599" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_19" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -782,7 +807,7 @@
 
 <joint name="roller_w1_1" type="continuous">
 <origin xyz="-0.0665785 0.0643294 -0.0015875" rpy="0.698132 -1.5708 0" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_20" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -817,7 +842,7 @@
 
 <joint name="roller_w1_2" type="continuous">
 <origin xyz="-0.0405614 0.083221 -0.0015875" rpy="0.349066 -1.5708 0" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_21" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -852,7 +877,7 @@
 
 <joint name="roller_w1_3" type="continuous">
 <origin xyz="-0.009652 0.092075 -0.0015875" rpy="-1.5708 -1.5708 1.5708" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_22" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -887,7 +912,7 @@
 
 <joint name="roller_w1_4" type="continuous">
 <origin xyz="0.0224216 0.0898234 -0.0015875" rpy="-1.5708 -1.57079 1.22173" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_23" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -922,7 +947,7 @@
 
 <joint name="roller_w1_5" type="continuous">
 <origin xyz="0.0517908 0.0767377 -0.0015875" rpy="-1.5708 -1.57079 0.872665" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_24" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -957,7 +982,7 @@
 
 <joint name="roller_w1_6" type="continuous">
 <origin xyz="0.0749133 0.0543964 -0.0015875" rpy="-1.5708 2.89145e-06 0.523599" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_25" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -992,7 +1017,7 @@
 
 <joint name="roller_w1_7" type="continuous">
 <origin xyz="0.0890001 0.025494 -0.0015875" rpy="-1.5708 2.84675e-06 0.174533" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_26" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1027,7 +1052,7 @@
 
 <joint name="roller_w1_8" type="continuous">
 <origin xyz="0.0923522 -0.00648329 -0.0015875" rpy="-1.5708 2.4587e-06 -0.174533" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_27" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1062,7 +1087,7 @@
 
 <joint name="roller_w1_9" type="continuous">
 <origin xyz="0.0845653 -0.0376786 -0.0015875" rpy="-1.5708 1.77409e-06 -0.523599" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_28" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1097,7 +1122,7 @@
 
 <joint name="roller_w1_10" type="continuous">
 <origin xyz="0.0665785 -0.0643294 -0.0015875" rpy="-2.44346 -1.5708 0" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_29" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1132,7 +1157,7 @@
 
 <joint name="roller_w1_11" type="continuous">
 <origin xyz="0.0405614 -0.083221 -0.0015875" rpy="-2.79253 -1.5708 0" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_30" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1167,7 +1192,7 @@
 
 <joint name="roller_w1_12" type="continuous">
 <origin xyz="0.009652 -0.092075 -0.0015875" rpy="1.5708 -1.5708 1.5708" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_31" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1202,7 +1227,7 @@
 
 <joint name="roller_w1_13" type="continuous">
 <origin xyz="-0.0224216 -0.0898234 -0.0015875" rpy="1.5708 -1.57079 1.22173" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_32" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1237,7 +1262,7 @@
 
 <joint name="roller_w1_14" type="continuous">
 <origin xyz="-0.0517908 -0.0767377 -0.0015875" rpy="1.5708 -1.57079 0.872665" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_33" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1272,7 +1297,7 @@
 
 <joint name="roller_w1_15" type="continuous">
 <origin xyz="-0.0749133 -0.0543964 -0.0015875" rpy="1.5708 2.89145e-06 0.523599" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_34" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1307,7 +1332,7 @@
 
 <joint name="roller_w1_16" type="continuous">
 <origin xyz="-0.0890001 -0.025494 -0.0015875" rpy="1.5708 2.84675e-06 0.174533" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_35" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1342,23 +1367,23 @@
 
 <joint name="roller_w1_17" type="continuous">
 <origin xyz="-0.0923522 0.00648329 -0.0015875" rpy="1.5708 2.4587e-06 -0.174533" />
-<parent link="wheel_2" />
+<parent link="wheel1" />
 <child link="8x750roller_36" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
 <joint_properties friction="0.0"/>
 </joint>
 
-<joint name="wheel1_joint" type="continuous">
+<joint name="wheel0_joint" type="continuous">
 <origin xyz="-0.212654 0.132125 -0.130854" rpy="-1.5708 -1.50485e-12 1.0472" />
-<parent link="base_link" />
-<child link="wheel_2" />
+<parent link="body_link" />
+<child link="wheel0" />
 <axis xyz="0 0 1"/>
 <limit effort="30" velocity="20" />
 <joint_properties friction="0.0"/>
 </joint>
 
-<link name="wheel_3">
+<link name="wheel2">
 <visual>
 <origin xyz="0.0157175 -0.000676884 -0.0110091" rpy="-1.5708 1.21101e-16 3.64923e-22" />
 <geometry>
@@ -1412,7 +1437,7 @@
 
 <joint name="roller_w2_0" type="continuous">
 <origin xyz="0.0890001 -0.025494 -0.0015875" rpy="-1.5708 -3.04078e-06 2.96706" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_37" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1447,7 +1472,7 @@
 
 <joint name="roller_w2_1" type="continuous">
 <origin xyz="0.0923522 0.00648329 -0.0015875" rpy="-1.5708 1.48959e-08 -2.96706" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_38" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1482,7 +1507,7 @@
 
 <joint name="roller_w2_2" type="continuous">
 <origin xyz="0.0845653 0.0376786 -0.0015875" rpy="-1.5708 -7.70262e-17 -2.61799" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_39" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1517,7 +1542,7 @@
 
 <joint name="roller_w2_3" type="continuous">
 <origin xyz="0.0665785 0.0643294 -0.0015875" rpy="2.44346 -1.5708 0" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_40" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1552,7 +1577,7 @@
 
 <joint name="roller_w2_4" type="continuous">
 <origin xyz="0.0405614 0.083221 -0.0015875" rpy="2.79253 -1.5708 0" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_41" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1587,7 +1612,7 @@
 
 <joint name="roller_w2_5" type="continuous">
 <origin xyz="0.009652 0.092075 -0.0015875" rpy="-3.14159 -1.5708 0" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_42" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1622,7 +1647,7 @@
 
 <joint name="roller_w2_6" type="continuous">
 <origin xyz="-0.0224216 0.0898234 -0.0015875" rpy="-2.79253 -1.5708 0" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_43" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1657,7 +1682,7 @@
 
 <joint name="roller_w2_7" type="continuous">
 <origin xyz="-0.0517908 0.0767377 -0.0015875" rpy="-2.44346 -1.5708 0" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_44" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1692,7 +1717,7 @@
 
 <joint name="roller_w2_8" type="continuous">
 <origin xyz="-0.0749133 0.0543964 -0.0015875" rpy="1.5708 -9.29494e-17 2.61799" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_45" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1727,7 +1752,7 @@
 
 <joint name="roller_w2_9" type="continuous">
 <origin xyz="-0.0890001 0.025494 -0.0015875" rpy="1.5708 -1.2854e-17 2.96706" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_46" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1762,7 +1787,7 @@
 
 <joint name="roller_w2_10" type="continuous">
 <origin xyz="-0.0923522 -0.00648329 -0.0015875" rpy="1.5708 -5.86296e-17 -2.96706" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_47" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1797,7 +1822,7 @@
 
 <joint name="roller_w2_11" type="continuous">
 <origin xyz="-0.0845653 -0.0376786 -0.0015875" rpy="1.5708 -7.70262e-17 -2.61799" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_48" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1832,7 +1857,7 @@
 
 <joint name="roller_w2_12" type="continuous">
 <origin xyz="-0.0665785 -0.0643294 -0.0015875" rpy="-0.698132 -1.5708 0" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_49" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1867,7 +1892,7 @@
 
 <joint name="roller_w2_13" type="continuous">
 <origin xyz="-0.0405614 -0.083221 -0.0015875" rpy="-0.349066 -1.5708 0" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_50" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1902,7 +1927,7 @@
 
 <joint name="roller_w2_14" type="continuous">
 <origin xyz="-0.009652 -0.092075 -0.0015875" rpy="7.41518e-14 -1.5708 0" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_51" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1937,7 +1962,7 @@
 
 <joint name="roller_w2_15" type="continuous">
 <origin xyz="0.0224216 -0.0898234 -0.0015875" rpy="0.349066 -1.5708 0" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_52" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -1972,7 +1997,7 @@
 
 <joint name="roller_w2_16" type="continuous">
 <origin xyz="0.0517908 -0.0767377 -0.0015875" rpy="0.698132 -1.5708 0" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_53" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -2007,7 +2032,7 @@
 
 <joint name="roller_w2_17" type="continuous">
 <origin xyz="0.0749133 -0.0543964 -0.0015875" rpy="-1.5708 -9.29511e-17 2.61799" />
-<parent link="wheel_3" />
+<parent link="wheel2" />
 <child link="8x750roller_54" />
 <axis xyz="0 0 1"/>
 <limit effort="100" velocity="20" />
@@ -2016,8 +2041,8 @@
 
 <joint name="wheel2_joint" type="continuous">
 <origin xyz="0.227979 0.132092 -0.130855" rpy="-1.5708 -3.25141e-07 -1.04719" />
-<parent link="base_link" />
-<child link="wheel_3" />
+<parent link="body_link" />
+<child link="wheel2" />
 <axis xyz="0 0 1"/>
 <limit effort="30" velocity="20" />
 <joint_properties friction="0.0"/>
@@ -2038,13 +2063,17 @@
     </link>
 
     <joint name="lidar_mount_joint" type="fixed">
+<<<<<<< HEAD
         <origin xyz="-0.2355 0.136 0.345" rpy="0.0 0.0 0.0"/>
+=======
+        <origin xyz="0.23 0.0 0.345" rpy="0.0 0.0 0.0"/>
+>>>>>>> dk
         <parent link="base_link"/>
         <child link="lidar_mount"/>
     </joint>
 
     <!-- Lidar Link -->
-  <link name="rplidar_link">
+  <link name="lidar_link">
     <collision>
       <origin xyz="0 0 0" rpy="1.5707 0 1.5707"/>
       <geometry>
@@ -2096,35 +2125,58 @@
         </inertial>
     </link>
 
+  <link name="camera_body">
+    <visual>
+      <origin xyz="0. 0. 0." />
+      <geometry>
+        <box size="0.0994 0.0996 0.023" />
+      </geometry>
+      <material name="white" />
+    </visual>
+  </link>
 
-    <!-- Azure Kinect Camera Link (Bottom Camera) -->
-    <link name="kinect_2_link">
-        <visual>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-            <geometry>
-                <mesh filename="package://trikey_description/meshes/Azure_Kinect.stl"/>
-            </geometry>
-            <material name="kinect_material">
-                <color rgba="0.9 0.2 0.24 1.0"/>
-            </material>
-        </visual>
+  <link name="camera_base">
+    <visual>
+      <origin xyz="-0.013 0. 0." />
+      <geometry>
+        <box size="0.026 0.103 0.039" />
+      </geometry>
+      <material name="grey" />
+    </visual>
+  </link>
 
-        <collision>
-            <origin xyz="0.0 0.0 0.0"/>
-            <geometry>
-                <mesh filename="package://trikey_description/meshes/Azure_Kinect.stl"/>
-            </geometry>
-            <material name="kinect_material">
-                <color rgba="0.9 0.2 0.24 1.0"/>
-            </material>
-        </collision>
+  <link name="camera_visor">
+    <visual>
+      <origin xyz="-0.0128 0. 0." />
+      <geometry>
+        <box size="0.026 0.101 0.037" />
+      </geometry>
+      <material name="black" />
+    </visual>
+  </link>
 
-        <inertial>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-            <mass value=".44" />
-            <inertia ixx="10.173985" ixy="0.212137"  ixz="-0.09591" iyy="5.191632" iyz="0.505713" izz="5.853716" />
-        </inertial>
-    </link>
+  <joint name="base_link_to_camera_base" type="fixed">
+      <origin xyz="0.289682 -0.01239 0.28607" rpy="-1.57 0.0 0.0" />
+      <parent link="base_link" />
+      <child link="camera_base" />
+  </joint>
+
+
+
+  <joint name="camera_base_to_body" type="fixed">
+    <parent link="camera_base" />
+    <child link="camera_body" />
+    <origin xyz="-0.0757 0. 0.008" rpy="0. 0. 0." />
+  </joint>
+
+  <joint name="camera_base_to_visor" type="fixed">
+    <parent link="camera_base" />
+    <child link="camera_visor" />
+    <origin xyz="0. 0. 0." rpy="0. 0. 0." />
+  </joint>
+
+
+
 
   <!-- Azure Kinect Camera Lense Link (Top Camera) -->
   <link name="kinect_1_lense_link">
@@ -2136,37 +2188,12 @@
     </visual>
   </link>
 
-  <!-- Azure Kinect Camera Lense Link (Bottom Camera) -->
-  <link name="kinect_2_lense_link">
-    <visual>
-      <origin xyz="0 0 0" rpy="0 1.57 0" />
-      <geometry>
-        <cylinder length="0.001" radius="0.01"/>
-      </geometry>
-    </visual>
-  </link>
-
-<link name="kinect_2_pcl_link">
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <cylinder length="0.001" radius="0.01"/>
-      </geometry>
-    </visual>
-  </link>
-
     <!-- Kinect Camera Joints -->
 
     <joint name="kinect_1_joint" type="fixed">
-        <origin xyz="-0.01239 -0.289682 0.28607" rpy="0 1.57 -1.57079632679"/>
+        <origin xyz="0.289682 -0.01239 0.28607" rpy="0 1.57 0"/>
         <parent link="base_link"/>
         <child link="kinect_1_link"/>
-    </joint>
-
-    <joint name="kinect_2_joint" type="fixed">
-        <origin xyz="0.01239 -0.289682 0.1734" rpy="0 2.0943951023931953 -1.57079632679"/>
-        <parent link="base_link"/>
-        <child link="kinect_2_link"/>
     </joint>
 
     <joint name="kinect_1_lense_joint" type="fixed">
@@ -2175,700 +2202,13 @@
         <child link="kinect_1_lense_link"/>
     </joint>
 
-    <joint name="kinect_2_lense_joint" type="fixed">
-        <origin xyz="-0.03 0 0.01" rpy="0 -1.57 0"/>
-        <parent link="kinect_2_link"/>
-        <child link="kinect_2_lense_link"/>
-    </joint>
-
-    <joint name="kinect_2_pcl_joint" type="fixed">
-        <origin xyz="0 0 0" rpy="0 0 -1.57079632679"/>
-        <parent link="kinect_2_link"/>
-        <child link="kinect_2_pcl_link"/>
-    </joint>
-
-
     <!-- Lidar Joint -->
     <joint name="rplidar_joint" type="fixed">
         <axis xyz="0 1 0" />
-        <origin xyz="0 0 0" rpy="0 0 3.14159"/>
+        <origin xyz="0 0 0" rpy="0 0 3.14"/>
         <parent link="lidar_mount"/>
-        <child link="rplidar_link"/>
+        <child link="lidar_link"/>
     </joint>
 
-    <!-- RPLidar Sensor -->
-    <!-- Noise parameters based on published spec for Hokuyo laser
-    achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
-    stddev of 0.01m will put 99.7% of samples within 0.03m of the true
-    reading. -->
-    <!-- specs for RPLidar A2M8
-    <gazebo reference="rplidar_link">
-        <sensor type="ray" name="rplidar_sensor">
-          <pose>0 0 1 0 0 0</pose>
-          <visualize>true</visualize>
-          <update_rate>10</update_rate>
-          <ray>
-            <scan>
-              <horizontal>
-                <samples>400</samples>
-                <resolution>1</resolution>
-                <min_angle>-3.141593</min_angle>
-                <max_angle>3.141593</max_angle>
-              </horizontal>
-	    </scan>
-            <range>
-              <min>0.15</min>
-              <max>8.0</max>
-              <resolution>0.01</resolution>
-            </range>
-            <noise>
-              <type>gaussian</type>
-               <mean>0.0</mean>
-              <stddev>0.01</stddev>
-            </noise>
-          </ray>
-            <plugin name="gazebo_ros_head_rplidar_controller" filename="libgazebo_ros_laser.so">
-            <topicName>/scan</topicName>
-            <frameName>rplidar_link</frameName>
-        </plugin>
-        </sensor>
-        <material>Gazebo/Grey</material>
-     </gazebo>
-     -->
-
-  <!-- Camera Plugin for Gazebo -->
-    <!-- Kinect Camera 1 -->
-    <gazebo reference="kinect_1_lense_link">
-      <sensor type="depth" name="camera1">
-        <update_rate>15.0</update_rate>
-        <camera name="kinect1">
-          <horizontal_fov>2.0944</horizontal_fov>
-          <image>
-            <width>512</width>
-            <height>512</height>
-            <format>R8G8B8</format>
-          </image>
-          <clip>
-            <near>0.02</near>
-            <far>300</far>
-          </clip>
-          <noise>
-            <type>gaussian</type>
-            <!-- Noise is sampled independently per pixel on each frame.
-                That pixel's noise value is added to each of its color
-                channels, which at that point lie in the range [0,1]. -->
-            <mean>0.5</mean>
-            <stddev>0.007</stddev>
-          </noise>
-        </camera>
-          <plugin name="kinect_plugin" filename="libgazebo_ros_openni_kinect.so">
-                <baseline>0.1</baseline>
-                <alwaysOn>true</alwaysOn>
-                <!-- Keep this zero, update_rate in the parent <sensor> tag
-                will control the frame rate. -->
-                <updateRate>0.0</updateRate>
-                <cameraName>kinect1</cameraName>
-                <robotNamespace>/trikey</robotNamespace>
-                <imageTopicName>/kinect1/color/image_raw</imageTopicName>
-                <cameraInfoTopicName>/kinect1/camera_info</cameraInfoTopicName>
-                <depthImageTopicName>/kinect1/depth/image_raw</depthImageTopicName>
-                <depthImageInfoTopicName>/kinect1/depth/camera_info</depthImageInfoTopicName>
-                <pointCloudTopicName>/kinect1/points</pointCloudTopicName>
-                <frameName>kinect_1_lense_link</frameName>
-                <pointCloudCutoff>0.5</pointCloudCutoff>
-                <pointCloudCutoffMax>2.0</pointCloudCutoffMax>
-            </plugin>
-      </sensor>
-    </gazebo>
-
-    <!-- Kinect Camera 2 -->
-    <gazebo reference="kinect_2_lense_link">
-      <sensor type="depth" name="camera2">
-        <update_rate>15.0</update_rate>
-        <camera name="kinect2">
-          <horizontal_fov>2.0944</horizontal_fov>
-          <image>
-            <width>512</width>
-            <height>512</height>
-            <format>R8G8B8</format>
-          </image>
-          <clip>
-            <near>0.02</near>
-            <far>300</far>
-          </clip>
-          <noise>
-            <type>gaussian</type>
-            <!-- Noise is sampled independently per pixel on each frame.
-                That pixel's noise value is added to each of its color
-                channels, which at that point lie in the range [0,1]. -->
-            <mean>0.5</mean>
-            <stddev>0.007</stddev>
-          </noise>
-        </camera>
-          <plugin name="kinect_plugin" filename="libgazebo_ros_openni_kinect.so">
-                <baseline>0.1</baseline>
-                <alwaysOn>true</alwaysOn>
-                <!-- Keep this zero, update_rate in the parent <sensor> tag
-                will control the frame rate. -->
-                <updateRate>0.0</updateRate>
-                <cameraName>kinect2</cameraName>
-                <robotNamespace>/trikey</robotNamespace>
-                <imageTopicName>/kinect2/color/image_raw</imageTopicName>
-                <cameraInfoTopicName>/kinect2/camera_info</cameraInfoTopicName>
-                <depthImageTopicName>/kinect2/depth/image_raw</depthImageTopicName>
-                <depthImageInfoTopicName>/kinect2/depth/camera_info</depthImageInfoTopicName>
-                <pointCloudTopicName>/kinect2/points</pointCloudTopicName>
-                <frameName>kinect_2_pcl_link</frameName>
-                <pointCloudCutoff>0.5</pointCloudCutoff>
-                <pointCloudCutoffMax>2.0</pointCloudCutoffMax>
-            </plugin>
-      </sensor>
-    </gazebo>
-
-
-    <!-- Transmissions: needed for ROS control -->
-    <transmission name="wheel0_simple_trans">
-        <type>transmission_interface/SimpleTransmission</type>
-        <joint name="wheel0_joint">
-            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-        </joint>
-        <actuator name="wheel0_motor">
-            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-        </actuator>
-    </transmission>
-
-    <transmission name="wheel1_simple_trans">
-        <type>transmission_interface/SimpleTransmission</type>
-        <joint name="wheel1_joint">
-            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-        </joint>
-        <actuator name="wheel1_motor">
-            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-        </actuator>
-    </transmission>
-
-    <transmission name="wheel2_simple_trans">
-        <type>transmission_interface/SimpleTransmission</type>
-        <joint name="wheel2_joint">
-            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-        </joint>
-        <actuator name="wheel2_motor">
-            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-        </actuator>
-    </transmission>
-
-    <!--==================== Sensors ====================-->
-
-
-
-    <!-- Pose Ground Truth -->
-    <gazebo>
-        <plugin filename="libgazebo_ros_p3d.so" name="gazebo_ros_p3d">
-            <robotNamespace>/trikey</robotNamespace>
-            <frame_name>odom</frame_name>
-            <bodyName>base_link</bodyName>
-            <topicName>ground_truth</topicName>
-            <frameName>world</frameName>
-            <gaussianNoise>0</gaussianNoise>
-            <alwaysOn>true</alwaysOn>
-            <updateRate>30</updateRate>
-        </plugin>
-    </gazebo>
-
-    <gazebo>
-        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-            <robotNamespace>/trikey</robotNamespace>
-            <controlPeriod>0.001</controlPeriod>
-        </plugin>
-    </gazebo>
-
-
-
-
-    <!-- Fix jitter -->
-    <gazebo reference="8x750roller">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_2">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_3">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_4">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_5">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_6">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_7">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_8">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_9">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_10">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_11">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_12">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_13">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_14">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_15">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_16">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_17">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_18">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_19">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_20">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_21">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_22">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_23">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_24">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_25">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_26">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_27">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_28">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_29">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_30">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_31">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_32">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_33">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_34">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_35">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_36">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_37">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_38">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_39">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_40">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_41">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_42">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_43">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_44">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_45">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_46">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_47">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_48">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_49">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_50">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_51">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_52">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_53">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
-
-    <gazebo reference="8x750roller_54">
-        <mu1>0.8</mu1>
-        <mu2>0.8</mu2>
-        <kp>50000.0</kp>
-        <kd>80.0</kd>
-        <minDepth>0.0001</minDepth>
-        <maxVel>0</maxVel>
-    </gazebo>
+    
 </robot>

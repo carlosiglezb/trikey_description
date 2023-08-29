@@ -7,6 +7,7 @@ Panels:
         - /Global Options1
         - /Status1
         - /Grid1
+        - /RobotModel1
         - /TF1
         - /TF1/Frames1
       Splitter Ratio: 0.5
@@ -54,7 +55,7 @@ Visualization Manager:
       Plane Cell Count: 10
       Reference Frame: <Fixed Frame>
       Value: true
-    - Alpha: 1
+    - Alpha: 0.5
       Class: rviz/RobotModel
       Collision Enabled: false
       Enabled: true
@@ -338,6 +339,10 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+        body_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
           Value: true
         kinect_1_lense_link:
           Alpha: 1
@@ -345,21 +350,6 @@ Visualization Manager:
           Show Trail: false
           Value: true
         kinect_1_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        kinect_2_lense_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        kinect_2_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        kinect_2_pcl_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -509,27 +499,23 @@ Visualization Manager:
           Value: false
         All Enabled: false
         base_link:
+          Value: true
+        body_link:
           Value: false
         kinect_1_lense_link:
           Value: false
         kinect_1_link:
-          Value: false
-        kinect_2_lense_link:
-          Value: false
-        kinect_2_link:
-          Value: false
-        kinect_2_pcl_link:
           Value: false
         lidar_mount:
           Value: false
         rplidar_link:
           Value: false
         wheel:
-          Value: false
+          Value: true
         wheel_2:
-          Value: false
+          Value: true
         wheel_3:
-          Value: false
+          Value: true
       Marker Alpha: 1
       Marker Scale: 1
       Name: TF
@@ -538,128 +524,124 @@ Visualization Manager:
       Show Names: true
       Tree:
         base_link:
-          kinect_1_link:
-            kinect_1_lense_link:
-              {}
-          kinect_2_link:
-            kinect_2_lense_link:
-              {}
-            kinect_2_pcl_link:
-              {}
-          lidar_mount:
-            rplidar_link:
-              {}
-          wheel:
-            8x750roller:
-              {}
-            8x750roller_10:
-              {}
-            8x750roller_11:
-              {}
-            8x750roller_12:
-              {}
-            8x750roller_13:
-              {}
-            8x750roller_14:
-              {}
-            8x750roller_15:
-              {}
-            8x750roller_16:
-              {}
-            8x750roller_17:
-              {}
-            8x750roller_18:
-              {}
-            8x750roller_2:
-              {}
-            8x750roller_3:
-              {}
-            8x750roller_4:
-              {}
-            8x750roller_5:
-              {}
-            8x750roller_6:
-              {}
-            8x750roller_7:
-              {}
-            8x750roller_8:
-              {}
-            8x750roller_9:
-              {}
-          wheel_2:
-            8x750roller_19:
-              {}
-            8x750roller_20:
-              {}
-            8x750roller_21:
-              {}
-            8x750roller_22:
-              {}
-            8x750roller_23:
-              {}
-            8x750roller_24:
-              {}
-            8x750roller_25:
-              {}
-            8x750roller_26:
-              {}
-            8x750roller_27:
-              {}
-            8x750roller_28:
-              {}
-            8x750roller_29:
-              {}
-            8x750roller_30:
-              {}
-            8x750roller_31:
-              {}
-            8x750roller_32:
-              {}
-            8x750roller_33:
-              {}
-            8x750roller_34:
-              {}
-            8x750roller_35:
-              {}
-            8x750roller_36:
-              {}
-          wheel_3:
-            8x750roller_37:
-              {}
-            8x750roller_38:
-              {}
-            8x750roller_39:
-              {}
-            8x750roller_40:
-              {}
-            8x750roller_41:
-              {}
-            8x750roller_42:
-              {}
-            8x750roller_43:
-              {}
-            8x750roller_44:
-              {}
-            8x750roller_45:
-              {}
-            8x750roller_46:
-              {}
-            8x750roller_47:
-              {}
-            8x750roller_48:
-              {}
-            8x750roller_49:
-              {}
-            8x750roller_50:
-              {}
-            8x750roller_51:
-              {}
-            8x750roller_52:
-              {}
-            8x750roller_53:
-              {}
-            8x750roller_54:
-              {}
+          body_link:
+            kinect_1_link:
+              kinect_1_lense_link:
+                {}
+            lidar_mount:
+              rplidar_link:
+                {}
+            wheel:
+              8x750roller:
+                {}
+              8x750roller_10:
+                {}
+              8x750roller_11:
+                {}
+              8x750roller_12:
+                {}
+              8x750roller_13:
+                {}
+              8x750roller_14:
+                {}
+              8x750roller_15:
+                {}
+              8x750roller_16:
+                {}
+              8x750roller_17:
+                {}
+              8x750roller_18:
+                {}
+              8x750roller_2:
+                {}
+              8x750roller_3:
+                {}
+              8x750roller_4:
+                {}
+              8x750roller_5:
+                {}
+              8x750roller_6:
+                {}
+              8x750roller_7:
+                {}
+              8x750roller_8:
+                {}
+              8x750roller_9:
+                {}
+            wheel_2:
+              8x750roller_19:
+                {}
+              8x750roller_20:
+                {}
+              8x750roller_21:
+                {}
+              8x750roller_22:
+                {}
+              8x750roller_23:
+                {}
+              8x750roller_24:
+                {}
+              8x750roller_25:
+                {}
+              8x750roller_26:
+                {}
+              8x750roller_27:
+                {}
+              8x750roller_28:
+                {}
+              8x750roller_29:
+                {}
+              8x750roller_30:
+                {}
+              8x750roller_31:
+                {}
+              8x750roller_32:
+                {}
+              8x750roller_33:
+                {}
+              8x750roller_34:
+                {}
+              8x750roller_35:
+                {}
+              8x750roller_36:
+                {}
+            wheel_3:
+              8x750roller_37:
+                {}
+              8x750roller_38:
+                {}
+              8x750roller_39:
+                {}
+              8x750roller_40:
+                {}
+              8x750roller_41:
+                {}
+              8x750roller_42:
+                {}
+              8x750roller_43:
+                {}
+              8x750roller_44:
+                {}
+              8x750roller_45:
+                {}
+              8x750roller_46:
+                {}
+              8x750roller_47:
+                {}
+              8x750roller_48:
+                {}
+              8x750roller_49:
+                {}
+              8x750roller_50:
+                {}
+              8x750roller_51:
+                {}
+              8x750roller_52:
+                {}
+              8x750roller_53:
+                {}
+              8x750roller_54:
+                {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -746,7 +728,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 1.3019713163375854
+      Distance: 1.7768751382827759
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -754,17 +736,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 0
-        Y: 0
-        Z: 0
+        X: -0.011780016124248505
+        Y: 0.004212471656501293
+        Z: 0.05331743508577347
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.16539865732192993
+      Pitch: 0.5997975468635559
       Target Frame: <Fixed Frame>
-      Yaw: 5.1604461669921875
+      Yaw: 5.177318572998047
     Saved: ~
 Window Geometry:
   Displays:
